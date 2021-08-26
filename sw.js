@@ -10,7 +10,7 @@
 
 'use strict';
 
-var precacheConfig = [["/2021/07/01/Centos7防火墙设置/index.html", "fed44e93c86fc1a69a465c5c22abbce7"], ["/2021/07/05/RabbitMQ安装教程及安装包/index.html", "d6f9c79ce6ef1ef40afbb2cf8b5eee6b"], ["/2021/07/07/Redis的五大数据类型及操作命令/index.html", "669a6ceb97f87fcc937312a4bb223475"], ["/2021/07/08/Mysql面试题总结/index.html", "b0833542a74887b3064c8438963999e8"], ["/2021/07/10/RabbitMQ的集群/index.html", "dd0c618a7486c8a9d71362c8299121c2"], ["/2021/07/10/SpringBoot面试题/index.html", "6caa5667f945a7363ae4114c611a31a1"], ["/2021/07/11/Nginx的安装及高可用配置/index.html", "012030fe1403325a67eb1d9e5e6308b5"], ["/2021/07/12/Java的深拷贝和浅拷贝/index.html", "d287147f6cb3ce71e6a6069382a49766"], ["/2021/07/13/热部署Devtools/index.html", "855ba60eb8626d0d7684485f3990cbdc"], ["/2021/07/15/Redis持久化/index.html", "5a6f7678506b278f4aa9fb6f94b37fab"], ["/2021/07/23/Eureka服务注册与发现/index.html", "23f53d855be2ec9e412aa1b926f3445f"], ["/2021/07/23/为什么要使用Optional/index.html", "5390a93917c5ff50ecb66a8ab9b2b0aa"], ["/2021/07/27/JWT单点登录/index.html", "c42302922250b99c02695176a8cc64b1"], ["/2021/07/27/使用Java代码对nacos配置文件进行操作/index.html", "4506a4abdb63085674c2ce1049629889"], ["/2021/07/28/AOP记录日志/index.html", "236b8964841e2189a0d8893e575d740e"], ["/2021/07/28/Nacos持久化配置/index.html", "e912b57f9fb1929afcab3d3fec03345d"], ["/2021/07/31/OpenFeign的使用/index.html", "cb835438b7111a31ea0f0e837714caf7"], ["/2021/08/04/Centos7环境下安装Mysql8详细教程/index.html", "fd4c0c0b9110aabd51ba0f52f601d88d"], ["/2021/08/05/Nacos集群配置（Linux）/index.html", "54975574780800f7c4d68e8d60e08d53"], ["/2021/08/06/Ribbon负载均衡服务调用/index.html", "118d71256ac2e6269fbcfebe67b7e60b"], ["/2021/08/06/Seata/index.html", "9bff291e8f2c3d396b6efad46ed71b7c"], ["/about/index.html", "22dd4f2dfefb0560cdb0bbe3bca1ffaa"], ["/archives/2021/07/index.html", "43033ab2be6ff9b21d9a06f326fc58c9"], ["/archives/2021/07/page/2/index.html", "e318648d6ca4676032149d8a64ca78fa"], ["/archives/2021/08/index.html", "58059eded68c416bc34ab62bd3521e9c"], ["/archives/2021/index.html", "794c62c09101017ea20c3d55c2fbdaf1"], ["/archives/2021/page/2/index.html", "3466876f2f8a41a2198a7dfaacf5f18b"], ["/archives/index.html", "b16b5f8d029e5764de4e53a7247be762"], ["/archives/page/2/index.html", "51c940698475e7230f48c189ff28ccd1"], ["/categories/index.html", "fd7a4385829907f41a0f4b536206fbdd"], ["/css/APlayer.min.css", "a6e3570bc14f718c30f3a744a3be18fe"], ["/css/VolantisTags.css", "00e86b5f8f0c685af0cd50a0e5c72c14"], ["/css/card_botui.css", "aa687b8441c1dea2f0710f788723542f"], ["/css/fontAnimation.css", "e438cbdce5ff14ae374d19c1e13d491b"], ["/css/index.css", "eaa99a387cf691aee8c1ad7f1022f219"], ["/css/var.css", "d41d8cd98f00b204e9800998ecf8427e"], ["/css/volantis.css", "cd2a3ce6b8506d280e2ed38354b97b44"], ["/img/404.jpg", "4ef3cfb882b6dd4128da4c8745e9a507"], ["/img/algolia.svg", "88450dd56ea1a00ba772424b30b7d34d"], ["/img/avatar.png", "8d9f170f28537e95db18d36898815643"], ["/img/banner/4.jpg", "c17100ff73db548f429475376fd42f88"], ["/img/friend_404.gif", "68af0be9d22722e74665ef44dd532ba8"], ["/img/icp.png", "6e26aed5ced63bc60524cc736611d39e"], ["/img/loading.gif", "d1cf8d9ccb6a2b3514a7d14332035a3c"], ["/img/wechat.jpg", "78a728b6d777f8790878bbe1dbf376c3"], ["/index.html", "6d15742d60dd1550b3d15733b1dd6b23"], ["/js/APlayer.min.js", "8f1017e7a73737e631ff95fa51e4e7d7"], ["/js/Meting.min.js", "bfac0368480fd344282ec018d28f173d"], ["/js/VolantisTags.js", "3d18dd231aba8d8ae6ca554723630b3b"], ["/js/botui.js", "9d88f9c981b7f917faab90756d60fa3c"], ["/js/botui_init.js", "ee36b94f815c1d8e04c2fbd029c93648"], ["/js/classify.js", "2ec4725eff203ca3defe053eb5ec65ee"], ["/js/main.js", "b382597891e958e71bb7c1099977ec66"], ["/js/search/algolia.js", "24e286714f775d2a52053e530b2ac199"], ["/js/search/local-search.js", "e3a22e76d8b457655f619551990316e8"], ["/js/third-party/ClickShowText.js", "22f4c82da4faed04c79e61fcbbdf675c"], ["/js/third-party/activate-power-mode.js", "e8455f75769585811cd6b3220787d08e"], ["/js/third-party/canvas-nest.js", "bb643bd9c2ac59f6ce2a1251b8014624"], ["/js/third-party/canvas-ribbon.js", "4ca518354a167db9fe0869c0982ff215"], ["/js/third-party/click_heart.js", "c2420dfec66aa5bad663e6c365a129c8"], ["/js/third-party/fireworks.js", "080fdfcacffc6828826484645140af50"], ["/js/third-party/piao.js", "5c8c9ff4bb9bed49e333387a54eae9be"], ["/js/tw_cn.js", "0dcf46510648b9ff1a8a65d270ba117a"], ["/js/utils.js", "9fadc7723c6bd679aa69c1c158f65af0"], ["/js/volantis.js", "176cc4b7e4b28ae27e5faa4d28159966"], ["/live2dw/assets/moc/haruto.2048/texture_00.png", "56ff69b411abfc80cb68d0b1267959c5"], ["/live2dw/lib/L2Dwidget.0.min.js", "32973883fcac0a9ae6cc79c0ea25fda2"], ["/live2dw/lib/L2Dwidget.min.js", "094cbace49a39548bed64abff5988b05"], ["/music/index.html", "e37cf1934bd9b1519c6a0c67ba218d66"], ["/page/2/index.html", "687f675fdebccd0973bf407d637433ec"], ["/page/3/index.html", "21c1f7cf3d3d839b0a84eb559d935b8e"], ["/sw-register.js", "f483958b9183062ec1a033cc3eb8fff7"], ["/tags/Devtools/index.html", "8151e7534c0326dc7b637cf2cf63d578"], ["/tags/Java/index.html", "ffc57a39e79e6353e0fe77f5023b1b3e"], ["/tags/Linux/index.html", "bce3304a7f89d4728a1c0d8558dba39e"], ["/tags/Mysql/index.html", "3e4a52ab013fa43d7a6799ede650b6c5"], ["/tags/Nginx/index.html", "df6b0e53ef562daea69f7dbb6748cb14"], ["/tags/RabbitMQ/index.html", "46e5db9cb642ceae8a860775fc98e6ed"], ["/tags/Redis/index.html", "b07932379b9a0241d4b35cb176ed9750"], ["/tags/Spring/index.html", "7fae8d593974b08d1a2bbec248344b9b"], ["/tags/SpringBoot/index.html", "02bc73d47d7fa65d85d91514bfa02edc"], ["/tags/SpringCloud-Alibaba/index.html", "5436dc9904f652ecfb89e8a2283b79a4"], ["/tags/SpringCloud-Netflix/index.html", "65e285f7621d6a778afad83169dac1ad"], ["/tags/index.html", "6fef01d9ba8f2d1f82f57503c33eeb75"]];
+var precacheConfig = [["/buffifly/2021/07/01/Centos7防火墙设置/index.html","7cbf40ae20e5a9f083c791c51c64eed5"],["/buffifly/2021/07/05/RabbitMQ安装教程及安装包/index.html","4ce2df17346f716760253dd9e31db00b"],["/buffifly/2021/07/07/Redis的五大数据类型及操作命令/index.html","cfca7ed0d0ba50897caa3de297ca2f98"],["/buffifly/2021/07/08/Mysql面试题总结/index.html","aed20f182cb8d1749da011c6a2ffefe8"],["/buffifly/2021/07/10/RabbitMQ的集群/index.html","5f96f1e05bf7fc2c9b1c3aeda473cca8"],["/buffifly/2021/07/10/SpringBoot面试题/index.html","766795e2f4f01b74c2ced4550354f000"],["/buffifly/2021/07/11/Nginx的安装及高可用配置/index.html","386d411e4fc97d46ccb7fae0e598c02a"],["/buffifly/2021/07/12/Java的深拷贝和浅拷贝/index.html","32c337b28a52b94690f0cc1af5472b7f"],["/buffifly/2021/07/13/热部署Devtools/index.html","9ab07bfcb8966fdee413e73ee8c854b3"],["/buffifly/2021/07/15/Redis持久化/index.html","75bd213b585caf949623b3ae784578c7"],["/buffifly/2021/07/23/Eureka服务注册与发现/index.html","f30ab4ca44e8375dd6eaff8f2035e24a"],["/buffifly/2021/07/23/为什么要使用Optional/index.html","9086912cbf99659afd643a713505f6e7"],["/buffifly/2021/07/27/JWT单点登录/index.html","2c0d57cf67299c3b037b62d8087154b1"],["/buffifly/2021/07/27/使用Java代码对nacos配置文件进行操作/index.html","2903eb72fc5a0b620d91cf1804e511d1"],["/buffifly/2021/07/28/AOP记录日志/index.html","ca9b57941138fb5666c2d2452afa1cb3"],["/buffifly/2021/07/28/Nacos持久化配置/index.html","375898e8c61f74ef04d2a954cc471a70"],["/buffifly/2021/07/31/OpenFeign的使用/index.html","1ce62920980acb0dd332f590ce5adbfe"],["/buffifly/2021/08/04/Centos7环境下安装Mysql8详细教程/index.html","520a3c936e1196d3a46d4b499395e839"],["/buffifly/2021/08/05/Nacos集群配置（Linux）/index.html","bd644dce46eea894aae009c415911aa8"],["/buffifly/2021/08/06/Ribbon负载均衡服务调用/index.html","dd593845542510b2b8133e7dbf8bee41"],["/buffifly/2021/08/19/Gitlab搭建/index.html","15ab17fa174749dd1497c617ea4f3f90"],["/buffifly/2021/08/24/centos7配置基本开发环境/index.html","a133f7458c51abfaf82c08421d9d6474"],["/buffifly/2021/08/25/HashMap源码分析/index.html","eeddc0f03a174e6835f1bc9f9ab47177"],["/buffifly/about/index.html","515bc900ecd1e2872b49f7d61a51797c"],["/buffifly/archives/2021/07/index.html","c1e8107d518942627ea43eea78633f3d"],["/buffifly/archives/2021/07/page/2/index.html","e90f8cbd54e95b30dac2c064f4743471"],["/buffifly/archives/2021/08/index.html","a561fd17651b310df2653b4ee08ddede"],["/buffifly/archives/2021/index.html","956151248df9e613aa285411e3809eda"],["/buffifly/archives/2021/page/2/index.html","a1b8ae2f33f7a19a1cb5ed31bc58380e"],["/buffifly/archives/index.html","a492e69ed21f61db7707bcddbabf3968"],["/buffifly/archives/page/2/index.html","4c6343e95160f80bb4ea4a385ed1f584"],["/buffifly/categories/index.html","cc5a5fcb467e11198bc7cce9d7ce45b4"],["/buffifly/css/APlayer.min.css","a6e3570bc14f718c30f3a744a3be18fe"],["/buffifly/css/VolantisTags.css","00e86b5f8f0c685af0cd50a0e5c72c14"],["/buffifly/css/card_botui.css","aa687b8441c1dea2f0710f788723542f"],["/buffifly/css/fontAnimation.css","e438cbdce5ff14ae374d19c1e13d491b"],["/buffifly/css/index.css","73b7820292f365e8e448573cc6a6bc88"],["/buffifly/css/var.css","d41d8cd98f00b204e9800998ecf8427e"],["/buffifly/css/volantis.css","cd2a3ce6b8506d280e2ed38354b97b44"],["/buffifly/img/404.jpg","4ef3cfb882b6dd4128da4c8745e9a507"],["/buffifly/img/algolia.svg","88450dd56ea1a00ba772424b30b7d34d"],["/buffifly/img/avatar.png","8d9f170f28537e95db18d36898815643"],["/buffifly/img/banner/4.jpg","c17100ff73db548f429475376fd42f88"],["/buffifly/img/friend_404.gif","68af0be9d22722e74665ef44dd532ba8"],["/buffifly/img/icp.png","6e26aed5ced63bc60524cc736611d39e"],["/buffifly/img/loading.gif","d1cf8d9ccb6a2b3514a7d14332035a3c"],["/buffifly/img/wechat.jpg","78a728b6d777f8790878bbe1dbf376c3"],["/buffifly/index.html","773670c0f69c89543aacdf966fadc08f"],["/buffifly/js/APlayer.min.js","8f1017e7a73737e631ff95fa51e4e7d7"],["/buffifly/js/Meting.min.js","bfac0368480fd344282ec018d28f173d"],["/buffifly/js/VolantisTags.js","3d18dd231aba8d8ae6ca554723630b3b"],["/buffifly/js/botui.js","9d88f9c981b7f917faab90756d60fa3c"],["/buffifly/js/botui_init.js","ee36b94f815c1d8e04c2fbd029c93648"],["/buffifly/js/classify.js","2ec4725eff203ca3defe053eb5ec65ee"],["/buffifly/js/main.js","b382597891e958e71bb7c1099977ec66"],["/buffifly/js/search/algolia.js","24e286714f775d2a52053e530b2ac199"],["/buffifly/js/search/local-search.js","e3a22e76d8b457655f619551990316e8"],["/buffifly/js/third-party/ClickShowText.js","22f4c82da4faed04c79e61fcbbdf675c"],["/buffifly/js/third-party/activate-power-mode.js","e8455f75769585811cd6b3220787d08e"],["/buffifly/js/third-party/canvas-nest.js","bb643bd9c2ac59f6ce2a1251b8014624"],["/buffifly/js/third-party/canvas-ribbon.js","4ca518354a167db9fe0869c0982ff215"],["/buffifly/js/third-party/click_heart.js","c2420dfec66aa5bad663e6c365a129c8"],["/buffifly/js/third-party/fireworks.js","080fdfcacffc6828826484645140af50"],["/buffifly/js/third-party/piao.js","5c8c9ff4bb9bed49e333387a54eae9be"],["/buffifly/js/tw_cn.js","0dcf46510648b9ff1a8a65d270ba117a"],["/buffifly/js/utils.js","9fadc7723c6bd679aa69c1c158f65af0"],["/buffifly/js/volantis.js","176cc4b7e4b28ae27e5faa4d28159966"],["/buffifly/live2dw/assets/moc/haruto.2048/texture_00.png","56ff69b411abfc80cb68d0b1267959c5"],["/buffifly/live2dw/lib/L2Dwidget.0.min.js","32973883fcac0a9ae6cc79c0ea25fda2"],["/buffifly/live2dw/lib/L2Dwidget.min.js","094cbace49a39548bed64abff5988b05"],["/buffifly/music/index.html","7e0b1b0d91894eb085469030d086e577"],["/buffifly/page/2/index.html","7c6669ea93c0c5868f0a7bf30d2b2feb"],["/buffifly/page/3/index.html","a06169f9f09bc7e853c6a17df2ac6f36"],["/buffifly/page/4/index.html","d7c943c326af13de413e50560463b3ce"],["/buffifly/sw-register.js","3b19a39182b4900db0bf42d6c80c17e5"],["/buffifly/tags/Devtools/index.html","01c235eed967eeaac444d42553f5306c"],["/buffifly/tags/Java/index.html","f08fe2c93b0798a82e53877d56ba59db"],["/buffifly/tags/Linux/index.html","47585150d433b2bd8e0920588f8ee13d"],["/buffifly/tags/Mysql/index.html","ece46990f7f10060b87e401b5f1350c8"],["/buffifly/tags/Nginx/index.html","1657009ed6919bffabd371e1f60102f9"],["/buffifly/tags/RabbitMQ/index.html","2cc15447bff00902c30950b2d6a7624d"],["/buffifly/tags/Redis/index.html","bfaccf8d1057e4250ecab05761555a5e"],["/buffifly/tags/Spring/index.html","7069b7d12dbf6ef4e58150991da6b844"],["/buffifly/tags/SpringBoot/index.html","69992c2428b8565c92a4b5d9492c1858"],["/buffifly/tags/SpringCloud-Alibaba/index.html","4f1a7050bc9771b393ad1ea7a12f65b9"],["/buffifly/tags/SpringCloud-Netflix/index.html","c5f752fa6f222eeb7108b603d869831a"],["/buffifly/tags/index.html","79cba4d828ddc5ced6745285c2357875"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 var firstRegister = 1; // 默认1是首次安装SW， 0是SW更新
 
@@ -48,7 +48,7 @@ var cleanResponse = function (originalResponse) {
 };
 
 var createCacheKey = function (originalUrl, paramName, paramValue,
-                               dontCacheBustUrlsMatching) {
+    dontCacheBustUrlsMatching) {
 
     // 创建一个新的URL对象，避免影响原始URL
     var url = new URL(originalUrl);
@@ -77,7 +77,7 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
 };
 
 var stripIgnoredUrlParameters = function (originalUrl,
-                                          ignoreUrlParametersMatching) {
+    ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
     // 移除 hash; 查看 https://github.com/GoogleChrome/sw-precache/issues/290
     url.hash = '';
@@ -142,7 +142,7 @@ self.addEventListener('install', function (event) {
                     Array.from(urlsToCacheKeys.values()).map(function (cacheKey) {
                         // 如果缓存中没有匹配到cacheKey，添加进去
                         if (!cachedUrls.has(cacheKey)) {
-                            var request = new Request(cacheKey, {credentials: 'same-origin'});
+                            var request = new Request(cacheKey, { credentials: 'same-origin' });
                             return fetch(request).then(function (response) {
                                 // 只要返回200才能继续，否则直接抛错
                                 if (!response.ok) {
@@ -160,11 +160,11 @@ self.addEventListener('install', function (event) {
             });
         })
             .then(function () {
-
-                // 强制 SW 状态 installing -> activate
-                return self.skipWaiting();
-
-            })
+            
+            // 强制 SW 状态 installing -> activate
+            return self.skipWaiting();
+            
+        })
     );
 });
 
@@ -184,80 +184,88 @@ self.addEventListener('activate', function (event) {
                 );
             });
         }).then(function () {
-
+            
             return self.clients.claim();
-
+            
         }).then(function () {
-            // 如果是首次安装 SW 时, 不发送更新消息（是否是首次安装，通过指定cacheName 中是否有缓存信息判断）
-            // 如果不是首次安装，则是内容有更新，需要通知页面重载更新
-            if (!firstRegister) {
-                return self.clients.matchAll()
-                    .then(function (clients) {
-                        if (clients && clients.length) {
-                            clients.forEach(function (client) {
-                                client.postMessage('sw.update');
-                            })
-                        }
-                    })
-            }
-        })
+                // 如果是首次安装 SW 时, 不发送更新消息（是否是首次安装，通过指定cacheName 中是否有缓存信息判断）
+                // 如果不是首次安装，则是内容有更新，需要通知页面重载更新
+                if (!firstRegister) {
+                    return self.clients.matchAll()
+                        .then(function (clients) {
+                            if (clients && clients.length) {
+                                clients.forEach(function (client) {
+                                    client.postMessage('sw.update');
+                                })
+                            }
+                        })
+                }
+            })
     );
 });
 
 
-self.addEventListener('fetch', function (event) {
-    if (event.request.method === 'GET') {
 
-        // 是否应该 event.respondWith()，需要我们逐步的判断
-        // 而且也方便了后期做特殊的特殊
-        var shouldRespond;
+    self.addEventListener('fetch', function (event) {
+        if (event.request.method === 'GET') {
+
+            // 是否应该 event.respondWith()，需要我们逐步的判断
+            // 而且也方便了后期做特殊的特殊
+            var shouldRespond;
 
 
-        // 首先去除已配置的忽略参数及hash
-        // 查看缓存简直中是否包含该请求，包含就将shouldRespond 设为true
-        var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
-        shouldRespond = urlsToCacheKeys.has(url);
-
-        // 如果 shouldRespond 是 false, 我们在url后默认增加 'index.html'
-        // (或者是你在配置文件中自行配置的 directoryIndex 参数值)，继续查找缓存列表
-        var directoryIndex = 'index.html';
-        if (!shouldRespond && directoryIndex) {
-            url = addDirectoryIndex(url, directoryIndex);
+            // 首先去除已配置的忽略参数及hash
+            // 查看缓存简直中是否包含该请求，包含就将shouldRespond 设为true
+            var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
             shouldRespond = urlsToCacheKeys.has(url);
-        }
 
-        // 如果 shouldRespond 仍是 false，检查是否是navigation
-        // request， 如果是的话，判断是否能与 navigateFallbackWhitelist 正则列表匹配
-        var navigateFallback = '';
-        if (!shouldRespond &&
-            navigateFallback &&
-            (event.request.mode === 'navigate') &&
-            isPathWhitelisted([], event.request.url)
-        ) {
-            url = new URL(navigateFallback, self.location).toString();
-            shouldRespond = urlsToCacheKeys.has(url);
-        }
+            // 如果 shouldRespond 是 false, 我们在url后默认增加 'index.html'
+            // (或者是你在配置文件中自行配置的 directoryIndex 参数值)，继续查找缓存列表
+            var directoryIndex = 'index.html';
+            if (!shouldRespond && directoryIndex) {
+                url = addDirectoryIndex(url, directoryIndex);
+                shouldRespond = urlsToCacheKeys.has(url);
+            }
 
-        // 如果 shouldRespond 被置为 true
-        // 则 event.respondWith()匹配缓存返回结果，匹配不成就直接请求.
-        if (shouldRespond) {
-            event.respondWith(
-                caches.open(cacheName).then(function (cache) {
-                    return cache.match(urlsToCacheKeys.get(url)).then(function (response) {
-                        if (response) {
-                            return response;
-                        }
-                        throw Error('The cached response that was expected is missing.');
-                    });
-                }).catch(function (e) {
-                    // 如果捕获到异常错误，直接返回 fetch() 请求资源
-                    console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
-                    return fetch(event.request);
-                })
-            );
+            // 如果 shouldRespond 仍是 false，检查是否是navigation
+            // request， 如果是的话，判断是否能与 navigateFallbackWhitelist 正则列表匹配
+            var navigateFallback = '';
+            if (!shouldRespond &&
+                navigateFallback &&
+                (event.request.mode === 'navigate') &&
+                isPathWhitelisted([], event.request.url)
+            ) {
+                url = new URL(navigateFallback, self.location).toString();
+                shouldRespond = urlsToCacheKeys.has(url);
+            }
+
+            // 如果 shouldRespond 被置为 true
+            // 则 event.respondWith()匹配缓存返回结果，匹配不成就直接请求.
+            if (shouldRespond) {
+                event.respondWith(
+                    caches.open(cacheName).then(function (cache) {
+                        return cache.match(urlsToCacheKeys.get(url)).then(function (response) {
+                            if (response) {
+                                return response;
+                            }
+                            throw Error('The cached response that was expected is missing.');
+                        });
+                    }).catch(function (e) {
+                        // 如果捕获到异常错误，直接返回 fetch() 请求资源
+                        console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
+                        return fetch(event.request);
+                    })
+                );
+            }
         }
-    }
-});
+    });
+
+
+
+
+
+
+
 
 
 /* eslint-enable */
