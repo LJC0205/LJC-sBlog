@@ -1,207 +1,858 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java中的BigDecimal类用法介绍 | LJC’sBlog</title><meta name="description" content="Java中的BigDecimal类用法介绍  简介Java中提供了大数字(超过16位有效位)的操作类,即 java.math.BinInteger 类和 java.math.BigDecimal 类,用于高精度计算其中 BigInteger 类是针对大整数的处理类,而 BigDecimal 类则是针对大小数的处理类BigDecimal 类的实现用到了 BigInteger类,不同的是 BigDec"><meta name="keywords" content="Java"><meta name="author" content="Hello World攻城狮"><meta name="copyright" content="Hello World攻城狮"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/buffifly/img/favicon.ico"><link rel="canonical" href="http://www.ljc.cn.com/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="Java中的BigDecimal类用法介绍"><meta property="og:url" content="http://www.ljc.cn.com/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/"><meta property="og:site_name" content="LJC’sBlog"><meta property="og:description" content="Java中的BigDecimal类用法介绍  简介Java中提供了大数字(超过16位有效位)的操作类,即 java.math.BinInteger 类和 java.math.BigDecimal 类,用于高精度计算其中 BigInteger 类是针对大整数的处理类,而 BigDecimal 类则是针对大小数的处理类BigDecimal 类的实现用到了 BigInteger类,不同的是 BigDec"><meta property="og:image" content="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg27.jpg"><meta property="article:published_time" content="2021-09-04T12:57:22.000Z"><meta property="article:modified_time" content="2021-09-04T13:14:19.956Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-  }
-}
-var activateLightMode = function () {
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
-  }
-}
-
-var getCookies = function (name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-}
-
-var autoChangeMode = 'false'
-var t = getCookies('theme')
-if (autoChangeMode === '1') {
-  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-  if (t === undefined) {
-    if (isLightMode) activateLightMode()
-    else if (isDarkMode) activateDarkMode()
-    else if (isNotSpecified || hasNoSupport) {
-      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-      var now = new Date()
-      var hour = now.getHours()
-      var isNight = hour <= 6 || hour >= 18
-      isNight ? activateDarkMode() : activateLightMode()
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Java中的BigDecimal类用法介绍 | LJC’sBlog</title>
+    <meta name="description"
+          content="Java中的BigDecimal类用法介绍  简介Java中提供了大数字(超过16位有效位)的操作类,即 java.math.BinInteger 类和 java.math.BigDecimal 类,用于高精度计算其中 BigInteger 类是针对大整数的处理类,而 BigDecimal 类则是针对大小数的处理类BigDecimal 类的实现用到了 BigInteger类,不同的是 BigDec">
+    <meta name="keywords" content="Java">
+    <meta name="author" content="Hello World攻城狮">
+    <meta name="copyright" content="Hello World攻城狮">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="canonical"
+          href="http://www.ljc.cn.com/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="preconnect" href="//cdn.jsdelivr.net"/>
+    <link rel="preconnect" href="//hm.baidu.com"/>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/>
+    <link rel="preconnect" href="//busuanzi.ibruce.info"/>
+    <link rel="preconnect" href="//zz.bdstatic.com"/>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Java中的BigDecimal类用法介绍">
+    <meta property="og:url"
+          content="http://www.ljc.cn.com/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/">
+    <meta property="og:site_name" content="LJC’sBlog">
+    <meta property="og:description"
+          content="Java中的BigDecimal类用法介绍  简介Java中提供了大数字(超过16位有效位)的操作类,即 java.math.BinInteger 类和 java.math.BigDecimal 类,用于高精度计算其中 BigInteger 类是针对大整数的处理类,而 BigDecimal 类则是针对大小数的处理类BigDecimal 类的实现用到了 BigInteger类,不同的是 BigDec">
+    <meta property="og:image" content="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg27.jpg">
+    <meta property="article:published_time" content="2021-09-04T12:57:22.000Z">
+    <meta property="article:modified_time" content="2021-09-04T13:14:19.956Z">
+    <meta name="twitter:card" content="summary">
+    <script>var activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+        }
     }
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-      if (Cookies.get('theme') === undefined) {
-        e.matches ? activateDarkMode() : activateLightMode()
-      }
-    })
-  } else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else if (autoChangeMode === '2') {
-  now = new Date()
-  hour = now.getHours()
-  isNight = hour <= 6 || hour >= 18
-  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else {
-  if (t === 'dark') activateDarkMode()
-  else if (t === 'light') activateLightMode()
-}</script><link rel="stylesheet" href="/buffifly/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="Mysql索引" href="http://www.ljc.cn.com/buffifly/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/"><link rel="next" title="Java集合常用面试题" href="http://www.ljc.cn.com/buffifly/2021/09/03/Java%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?true";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
-  root: '/buffifly/',
-  algolia: {"appId":"VFLGY3NZZ8","apiKey":"9082a51b290f5be0d72a453a5e7d71a5","indexName":"ljc","hits":{"per_page":7},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  bookmark: {
-    message_prev: '按',
-    message_next: '键将本页加入书签'
-  },
-  runtime_unit: '天',
-  runtime: true,
-  copyright: undefined,
-  ClickShowText: undefined,
-  medium_zoom: true,
-  fancybox: true,
-  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
-  justifiedGallery: {
-    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-  },
-  baiduPush: true,
-  highlightCopy: true,
-  highlightLang: true,
-  isPhotoFigcaption: true,
-  islazyload: true,
-  isanchor: true    
-}</script><script>var GLOBAL_CONFIG_SITE = { 
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isSidebar: true,
-  postUpdate: '2021-09-04 21:14:19'
-}</script><noscript><style>
-#nav {
-  opacity: 1
-}
-.justified-gallery img{
-  opacity: 1
-}
-</style></noscript><link rel="stylesheet" href="/buffifly/css/VolantisTags.css"><link rel="stylesheet" href="/buffifly/css/volantis.css"><link rel="stylesheet" href="/buffifly/css/fontAnimation.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css"><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/buffifly/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/buffifly/archives/"><div class="headline">文章</div><div class="length_num">28</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/buffifly/tags/"><div class="headline">标签</div><div class="length_num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/buffifly/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/buffifly/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/buffifly/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-number">2.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal-对象常用方法"><span class="toc-number">3.</span> <span class="toc-text">BigDecimal 对象常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">4.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码"><span class="toc-number">5.</span> <span class="toc-text">源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工具类"><span class="toc-number">6.</span> <span class="toc-text">工具类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#联系博主"><span class="toc-number"></span> <span class="toc-text">联系博主</span></a></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg27.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/buffifly/">LJC’sBlog</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/buffifly/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/buffifly/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/buffifly/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Java中的BigDecimal类用法介绍</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-09-04 20:57:22"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2021-09-04</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2021-09-04 21:14:19"><i class="fas fa-history fa-fw"></i> 更新于 2021-09-04</span></time></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.2k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 5 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a href="/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span></a></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p class='p center logo large'>Java中的BigDecimal类用法介绍</p>
+    var activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+        }
+    }
 
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Java中提供了大数字(超过16位有效位)的操作类,即 <strong>java.math.BinInteger</strong> 类和 <strong>java.math.BigDecimal</strong> 类,用于高精度计算<br>其中 <strong>BigInteger</strong> 类是针对大整数的处理类,而 <strong>BigDecimal</strong> 类则是针对大小数的处理类<br><strong>BigDecimal</strong> 类的实现用到了 <strong>BigInteger</strong>类,不同的是 <strong>BigDecimal</strong> 加入了小数的概念</p>
-<br/>
+    var getCookies = function (name) {
+        const value = `; ${document.cookie}`
+        const parts = value.split(`; ${name}=`)
+        if (parts.length === 2) return parts.pop().split(';').shift()
+    }
 
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p><strong>float</strong>和<strong>Double</strong>只能用来做科学计算或者是工程计算;在商业计算中,对数字精度要求较高,必须使用 <strong>BigInteger</strong> 类和 <strong>BigDecimal</strong> 类,它支持任何精度的定点数,可以用它来精确计算货币值<br><strong>BigDecimal</strong>类创建的是对象,不能使用传统的+、-、x、/等算术运算符直接对其进行数学运算,而必须调用其对应的方法.方法的参数也必须是<strong>BigDecimal</strong>类型的对象</p>
-<br/>
+    var autoChangeMode = 'false'
+    var t = getCookies('theme')
+    if (autoChangeMode === '1') {
+        var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+        var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+        var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-<h3 id="BigDecimal-对象常用方法"><a href="#BigDecimal-对象常用方法" class="headerlink" title="BigDecimal 对象常用方法"></a>BigDecimal 对象常用方法</h3><p>构造 BigDecimal 对象常用以下方法:<br>BigDecimal BigDecimal(double d);        <strong>//  不允许使用</strong><br>BigDecimal BigDecimal(String s);         <strong>//  常用,推荐使用</strong><br>static BigDecimal valueOf(double d);    <strong>//  常用,推荐使用</strong></p>
-<p>其中,</p>
-<ol>
-<li>double 参数的构造方法,不允许使用!!!!因为它不能精确的得到相应的值;</li>
-<li>String 构造方法是完全可预知的: 写入 new BigDecimal(“0.1”) 将创建一个 BigDecimal,它正好等于预期的0.1; 因此,通常建议优先使用 String 构造方法;</li>
-<li>静态方法 valueOf(double val) 内部实现,仍是将 double 类型转为 String 类型; 这通常是将 double(或float)转化为 BigDecimal 的首选方法;</li>
-</ol>
-<br/>
+        if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+                console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+                var now = new Date()
+                var hour = now.getHours()
+                var isNight = hour <= 6 || hour >= 18
+                isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+                if (Cookies.get('theme') === undefined) {
+                    e.matches ? activateDarkMode() : activateLightMode()
+                }
+            })
+        } else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+    } else if (autoChangeMode === '2') {
+        now = new Date()
+        hour = now.getHours()
+        isNight = hour <= 6 || hour >= 18
+        if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+        else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+    } else {
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+    }</script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css">
+    <link rel="prev" title="Mysql索引" href="http://www.ljc.cn.com/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/">
+    <link rel="next" title="Java集合常用面试题"
+          href="http://www.ljc.cn.com/2021/09/03/Java%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script>
+    <script>var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?true";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap">
+    <script>var GLOBAL_CONFIG = {
+        root: '/',
+        algolia: {
+            "appId": "VFLGY3NZZ8",
+            "apiKey": "9082a51b290f5be0d72a453a5e7d71a5",
+            "indexName": "ljc",
+            "hits": {"per_page": 7},
+            "languages": {
+                "input_placeholder": "搜索文章",
+                "hits_empty": "找不到您查询的内容:${query}",
+                "hits_stats": "找到 ${hits} 条结果，用时 ${time} 毫秒"
+            }
+        },
+        localSearch: {"path": "search.xml", "languages": {"hits_empty": "找不到您查询的内容:${query}"}},
+        translate: {
+            "defaultEncoding": 2,
+            "translateDelay": 0,
+            "msgToTraditionalChinese": "繁",
+            "msgToSimplifiedChinese": "簡"
+        },
+        noticeOutdate: {
+            "limitDay": 500,
+            "position": "top",
+            "messagePrev": "It has been",
+            "messageNext": "days since the last update, the content of the article may be outdated."
+        },
+        copy: {
+            success: '复制成功',
+            error: '复制错误',
+            noSupport: '浏览器不支持'
+        },
+        bookmark: {
+            message_prev: '按',
+            message_next: '键将本页加入书签'
+        },
+        runtime_unit: '天',
+        runtime: true,
+        copyright: undefined,
+        ClickShowText: undefined,
+        medium_zoom: true,
+        fancybox: true,
+        Snackbar: {
+            "bookmark": {"message_prev": "按", "message_next": "键将本页加入书签"},
+            "chs_to_cht": "你已切换为繁体",
+            "cht_to_chs": "你已切换为简体",
+            "day_to_night": "你已切换为深色模式",
+            "night_to_day": "你已切换为浅色模式",
+            "bgLight": "#49b1f5",
+            "bgDark": "#121212",
+            "position": "top-center"
+        },
+        justifiedGallery: {
+            js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+            css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+        },
+        baiduPush: true,
+        highlightCopy: true,
+        highlightLang: true,
+        isPhotoFigcaption: true,
+        islazyload: true,
+        isanchor: true
+    }</script>
+    <script>var GLOBAL_CONFIG_SITE = {
+        isPost: true,
+        isHome: false,
+        isHighlightShrink: false,
+        isSidebar: true,
+        postUpdate: '2021-09-04 21:14:19'
+    }</script>
+    <noscript>
+        <style>
+            #nav {
+                opacity: 1
+            }
 
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>测试代码如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">	double d1 &#x3D; 0.10334;</span><br><span class="line">	double d2 &#x3D; 1234.0;</span><br><span class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(&quot;+d1+&quot;)&#x3D;&quot; + new BigDecimal(d1)); &#x2F;&#x2F;此种方式绝对不允许!!!!!</span><br><span class="line">	System.out.println(&quot;new BigDecimal(&quot;+d2+&quot;)&#x3D;&quot; + new BigDecimal(d2)); &#x2F;&#x2F;此种方式绝对不允许!!!!!</span><br><span class="line">	System.out.println(&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d1+&quot;))&#x3D;&quot; + new BigDecimal(String.valueOf(d1)));</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d2+&quot;))&#x3D;&quot; + new BigDecimal(String.valueOf(d2)));</span><br><span class="line">	System.out.println(&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d1+&quot;))&#x3D;&quot; + new BigDecimal(Double.toString(d1)));</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d2+&quot;))&#x3D;&quot; + new BigDecimal(Double.toString(d2)));</span><br><span class="line">	System.out.println(&quot;&quot;);</span><br><span class="line">	</span><br><span class="line">	System.out.println(&quot;BigDecimal.valueOf(&quot;+d1+&quot;)&#x3D;&quot; + BigDecimal.valueOf(d1));</span><br><span class="line">	System.out.println(&quot;BigDecimal.valueOf(&quot;+d2+&quot;)&#x3D;&quot; + BigDecimal.valueOf(d2));</span><br><span class="line">	System.out.println(&quot;&quot;);</span><br><span class="line"> </span><br><span class="line">	BigDecimal b1 &#x3D; BigDecimal.valueOf(1);</span><br><span class="line">	BigDecimal b2 &#x3D; BigDecimal.valueOf(1.00000);</span><br><span class="line">	System.out.println(b1.equals(b2));</span><br><span class="line">	System.out.println(b1.compareTo(b2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            .justified-gallery img {
+                opacity: 1
+            }
+        </style>
+    </noscript>
+    <link rel="stylesheet" href="/css/VolantisTags.css">
+    <link rel="stylesheet" href="/css/volantis.css">
+    <link rel="stylesheet" href="/css/fontAnimation.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css">
+    <meta name="generator" content="Hexo 4.2.1">
+</head>
+<body>
+<div id="loading-box">
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+        <div class="configure-border-1">
+            <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+            <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+    </div>
+</div>
+<div id="mobile-sidebar">
+    <div id="menu_mask"></div>
+    <div id="mobile-sidebar-menus">
+        <div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png"
+                                             onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div>
+        <div class="mobile_post_data">
+            <div class="mobile_data_item is-center">
+                <div class="mobile_data_link"><a href="/archives/">
+                    <div class="headline">文章</div>
+                    <div class="length_num">28</div>
+                </a></div>
+            </div>
+            <div class="mobile_data_item is-center">
+                <div class="mobile_data_link"><a href="/tags/">
+                    <div class="headline">标签</div>
+                    <div class="length_num">11</div>
+                </a></div>
+            </div>
+        </div>
+        <hr/>
+        <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i
+                    class="fas fa-chevron-down menus-expand"></i></a>
+                <ul class="menus_item_child">
+                    <li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li>
+                </ul>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/about/"><i
+                    class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div>
+        </div>
+    </div>
+</div>
+<i class="fas fa-arrow-right on" id="toggle-sidebar"></i>
+<div id="sidebar">
+    <div class="sidebar-toc">
+        <div class="sidebar-toc__title">目录</div>
+        <div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span
+                class="progress-percentage">%</span>
+            <div class="sidebar-toc__progress-bar"></div>
+        </div>
+        <div class="sidebar-toc__content">
+            <ol class="toc">
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span
+                        class="toc-text">简介</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-number">2.</span>
+                    <span class="toc-text">使用场景</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#BigDecimal-对象常用方法"><span class="toc-number">3.</span>
+                    <span class="toc-text">BigDecimal 对象常用方法</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">4.</span> <span
+                        class="toc-text">案例</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#源码"><span class="toc-number">5.</span> <span
+                        class="toc-text">源码</span></a></li>
+                <li class="toc-item toc-level-3"><a class="toc-link" href="#工具类"><span class="toc-number">6.</span>
+                    <span class="toc-text">工具类</span></a></li>
+            </ol>
+            </li>
+            <li class="toc-item toc-level-2"><a class="toc-link" href="#联系博主"><span class="toc-number"></span> <span
+                    class="toc-text">联系博主</span></a>
+        </div>
+    </div>
+</div>
+<div id="body-wrap">
+    <div id="web_bg" data-type="photo"></div>
+    <header class="post-bg" id="page-header"
+            style="background-image: url(https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg27.jpg)">
+        <nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">LJC’sBlog</a></span><span
+                class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i
+                class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div
+                class="menus_item"><a class="site-page" href="/"><i
+                class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page"
+                                                                                                   href="/archives/"><i
+                class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page"
+                                                                                                       href="/tags/"><i
+                class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i
+                class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul
+                class="menus_item_child"><li><a class="site-page" href="/music/"><i
+                class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a
+                class="site-page" href="/about/"><i
+                class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div><span class="toggle-menu close"><a
+                class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav>
+        <div id="post-info">
+            <div id="post-title">
+                <div class="posttitle">Java中的BigDecimal类用法介绍</div>
+            </div>
+            <div id="post-meta">
+                <div class="meta-firstline">
+                    <time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2021-09-04 20:57:22"><i
+                            class="far fa-calendar-alt fa-fw"></i> 发表于 2021-09-04</span><span
+                            class="post-meta__separator">|</span><span class="post-meta__date-updated"
+                                                                       title="更新于 2021-09-04 21:14:19"><i
+                            class="fas fa-history fa-fw"></i> 更新于 2021-09-04</span></time>
+                </div>
+                <div class="meta-secondline"><span class="post-meta-wordcount"><i
+                        class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.2k</span><span
+                        class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 5 分钟</span></span>
+                </div>
+                <div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i
+                        class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span
+                        id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span><span
+                        class="post-meta__separator">|</span><i class="far fa-comments fa-fw post-meta__icon"></i><span>评论数:</span><a
+                        href="/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/#post-comment"
+                        itemprop="discussionUrl"><span class="valine-comment-count comment-count"
+                                                       data-xid="/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/"
+                                                       itemprop="commentCount"></span></a></div>
+            </div>
+        </div>
+    </header>
+    <main class="layout_post" id="content-inner">
+        <article id="post">
+            <div class="post-content" id="article-container"><p class='p center logo large'>Java中的BigDecimal类用法介绍</p>
 
-<p>输出如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">new BigDecimal(0.10334)&#x3D;0.10334000000000000130118138486068346537649631500244140625</span><br><span class="line">new BigDecimal(1234.0)&#x3D;1234</span><br><span class="line"> </span><br><span class="line">new BigDecimal(String.valueOf(0.10334))&#x3D;0.10334</span><br><span class="line">new BigDecimal(String.valueOf(1234.0))&#x3D;1234.0</span><br><span class="line"> </span><br><span class="line">new BigDecimal(String.valueOf(0.10334))&#x3D;0.10334</span><br><span class="line">new BigDecimal(String.valueOf(1234.0))&#x3D;1234.0</span><br><span class="line"> </span><br><span class="line">BigDecimal.valueOf(0.10334)&#x3D;0.10334</span><br><span class="line">BigDecimal.valueOf(1234.0)&#x3D;1234.0</span><br><span class="line"> </span><br><span class="line">false</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+                <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3>
+                <p>Java中提供了大数字(超过16位有效位)的操作类,即 <strong>java.math.BinInteger</strong> 类和
+                    <strong>java.math.BigDecimal</strong> 类,用于高精度计算<br>其中 <strong>BigInteger</strong> 类是针对大整数的处理类,而
+                    <strong>BigDecimal</strong> 类则是针对大小数的处理类<br><strong>BigDecimal</strong> 类的实现用到了
+                    <strong>BigInteger</strong>类,不同的是 <strong>BigDecimal</strong> 加入了小数的概念</p>
+                <br/>
 
-<br/>
+                <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3>
+                <p><strong>float</strong>和<strong>Double</strong>只能用来做科学计算或者是工程计算;在商业计算中,对数字精度要求较高,必须使用 <strong>BigInteger</strong>
+                    类和 <strong>BigDecimal</strong> 类,它支持任何精度的定点数,可以用它来精确计算货币值<br><strong>BigDecimal</strong>类创建的是对象,不能使用传统的+、-、x、/等算术运算符直接对其进行数学运算,而必须调用其对应的方法.方法的参数也必须是<strong>BigDecimal</strong>类型的对象
+                </p>
+                <br/>
 
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>BigDecimal 类的 valueOf()方法源码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static BigDecimal valueOf(double val) &#123;</span><br><span class="line">	return new BigDecimal(Double.toString(val));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h3 id="BigDecimal-对象常用方法"><a href="#BigDecimal-对象常用方法" class="headerlink"
+                                              title="BigDecimal 对象常用方法"></a>BigDecimal 对象常用方法</h3>
+                <p>构造 BigDecimal 对象常用以下方法:<br>BigDecimal BigDecimal(double d); <strong>// 不允许使用</strong><br>BigDecimal
+                    BigDecimal(String s); <strong>// 常用,推荐使用</strong><br>static BigDecimal valueOf(double d); <strong>//
+                        常用,推荐使用</strong></p>
+                <p>其中,</p>
+                <ol>
+                    <li>double 参数的构造方法,不允许使用!!!!因为它不能精确的得到相应的值;</li>
+                    <li>String 构造方法是完全可预知的: 写入 new BigDecimal(“0.1”) 将创建一个 BigDecimal,它正好等于预期的0.1; 因此,通常建议优先使用 String
+                        构造方法;
+                    </li>
+                    <li>静态方法 valueOf(double val) 内部实现,仍是将 double 类型转为 String 类型; 这通常是将 double(或float)转化为 BigDecimal
+                        的首选方法;
+                    </li>
+                </ol>
+                <br/>
 
-<p>BigDecimal类的几个常用方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 求余数</span><br><span class="line"> * 返回值为 (this % divisor) 的 BigDecimal</span><br><span class="line"> *&#x2F;</span><br><span class="line">BigDecimal remainder(BigDecimal divisor);</span><br><span class="line"> </span><br><span class="line">&#x2F;**</span><br><span class="line"> * 求相反数</span><br><span class="line"> * 返回值是 (-this) 的 BigDecimal</span><br><span class="line"> *&#x2F;</span><br><span class="line">BigDecimal negate();</span><br><span class="line"> </span><br><span class="line">&#x2F;**</span><br><span class="line"> * 将此 BigDecimal 与指定的 BigDecimal 比较</span><br><span class="line"> * 根据此方法,值相等但具有不同标度的两个 BigDecimal 对象（如，2.0 和 2.00）被认为是相等的;</span><br><span class="line"> * 相对六个 boolean 比较运算符 (&lt;, &#x3D;&#x3D;, &gt;, &gt;&#x3D;, !&#x3D;, &lt;&#x3D;) 中每一个运算符的各个方法,优先提供此方法;</span><br><span class="line"> * 建议使用以下语句执行上述比较：(x.compareTo(y) &lt;op&gt; 0), 其中 &lt;op&gt; 是六个比较运算符之一;</span><br><span class="line"> *</span><br><span class="line"> * 指定者：接口 Comparable&lt;BigDecimal&gt; 中的 compareTo</span><br><span class="line"> * 返回：当此 BigDecimal 在数字上小于、等于或大于 val 时，返回 -1、0 或 1</span><br><span class="line"> *&#x2F;</span><br><span class="line">int compareTo(BigDecimal val);</span><br></pre></td></tr></table></figure>
+                <h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3>
+                <p>测试代码如下:</p>
+                <figure class="highlight plain">
+                    <table>
+                        <tr>
+                            <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span
+                                        class="line">3</span><br><span class="line">4</span><br><span
+                                        class="line">5</span><br><span class="line">6</span><br><span
+                                        class="line">7</span><br><span class="line">8</span><br><span
+                                        class="line">9</span><br><span class="line">10</span><br><span
+                                        class="line">11</span><br><span class="line">12</span><br><span
+                                        class="line">13</span><br><span class="line">14</span><br><span
+                                        class="line">15</span><br><span class="line">16</span><br><span
+                                        class="line">17</span><br><span class="line">18</span><br><span
+                                        class="line">19</span><br><span class="line">20</span><br><span
+                                        class="line">21</span><br><span class="line">22</span><br><span
+                                        class="line">23</span><br><span class="line">24</span><br><span
+                                        class="line">25</span><br></pre>
+                            </td>
+                            <td class="code">
+                                <pre><span class="line">public static void main(String[] args) &#123;</span><br><span
+                                        class="line">	double d1 &#x3D; 0.10334;</span><br><span class="line">	double d2 &#x3D; 1234.0;</span><br><span
+                                        class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(&quot;+d1+&quot;)&#x3D;&quot; + new BigDecimal(d1)); &#x2F;&#x2F;此种方式绝对不允许!!!!!</span><br><span
+                                        class="line">	System.out.println(&quot;new BigDecimal(&quot;+d2+&quot;)&#x3D;&quot; + new BigDecimal(d2)); &#x2F;&#x2F;此种方式绝对不允许!!!!!</span><br><span
+                                        class="line">	System.out.println(&quot;&quot;);</span><br><span
+                                        class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d1+&quot;))&#x3D;&quot; + new BigDecimal(String.valueOf(d1)));</span><br><span
+                                        class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d2+&quot;))&#x3D;&quot; + new BigDecimal(String.valueOf(d2)));</span><br><span
+                                        class="line">	System.out.println(&quot;&quot;);</span><br><span
+                                        class="line">	</span><br><span class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d1+&quot;))&#x3D;&quot; + new BigDecimal(Double.toString(d1)));</span><br><span
+                                        class="line">	System.out.println(&quot;new BigDecimal(String.valueOf(&quot;+d2+&quot;))&#x3D;&quot; + new BigDecimal(Double.toString(d2)));</span><br><span
+                                        class="line">	System.out.println(&quot;&quot;);</span><br><span
+                                        class="line">	</span><br><span class="line">	System.out.println(&quot;BigDecimal.valueOf(&quot;+d1+&quot;)&#x3D;&quot; + BigDecimal.valueOf(d1));</span><br><span
+                                        class="line">	System.out.println(&quot;BigDecimal.valueOf(&quot;+d2+&quot;)&#x3D;&quot; + BigDecimal.valueOf(d2));</span><br><span
+                                        class="line">	System.out.println(&quot;&quot;);</span><br><span
+                                        class="line"> </span><br><span class="line">	BigDecimal b1 &#x3D; BigDecimal.valueOf(1);</span><br><span
+                                        class="line">	BigDecimal b2 &#x3D; BigDecimal.valueOf(1.00000);</span><br><span
+                                        class="line">	System.out.println(b1.equals(b2));</span><br><span
+                                        class="line">	System.out.println(b1.compareTo(b2));</span><br><span
+                                        class="line">&#125;</span><br></pre>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
 
-<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">package com.util;</span><br><span class="line"> </span><br><span class="line">import java.math.BigDecimal;</span><br><span class="line"> </span><br><span class="line">&#x2F;**</span><br><span class="line"> * 提供精确的浮点数运算(包括加、减、乘、除、四舍五入)工具类</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class ArithUtil &#123;</span><br><span class="line"> </span><br><span class="line">	&#x2F;&#x2F; 除法运算默认精度</span><br><span class="line">	private static final int DEF_DIV_SCALE &#x3D; 10;</span><br><span class="line"> </span><br><span class="line">	private ArithUtil() &#123;</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 精确加法</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double add(double value1, double value2) &#123;</span><br><span class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span class="line">		return b1.add(b2).doubleValue();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 精确减法</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double sub(double value1, double value2) &#123;</span><br><span class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span class="line">		return b1.subtract(b2).doubleValue();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 精确乘法</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double mul(double value1, double value2) &#123;</span><br><span class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span class="line">		return b1.multiply(b2).doubleValue();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 精确除法 使用默认精度</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double div(double value1, double value2) throws IllegalAccessException &#123;</span><br><span class="line">		return div(value1, value2, DEF_DIV_SCALE);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 精确除法</span><br><span class="line">	 * @param scale 精度</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double div(double value1, double value2, int scale) throws IllegalAccessException &#123;</span><br><span class="line">		if(scale &lt; 0) &#123;</span><br><span class="line">			throw new IllegalAccessException(&quot;精确度不能小于0&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span class="line">		&#x2F;&#x2F; return b1.divide(b2, scale).doubleValue();</span><br><span class="line">		return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 四舍五入</span><br><span class="line">	 * @param scale 小数点后保留几位</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static double round(double v, int scale) throws IllegalAccessException &#123;</span><br><span class="line">		return div(v, 1, scale);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#x2F;**</span><br><span class="line">	 * 比较大小</span><br><span class="line">	 *&#x2F;</span><br><span class="line">	public static boolean equalTo(BigDecimal b1, BigDecimal b2) &#123;</span><br><span class="line">		if(b1 &#x3D;&#x3D; null || b2 &#x3D;&#x3D; null) &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">		return 0 &#x3D;&#x3D; b1.compareTo(b2);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <p>输出如下:</p>
+                <figure class="highlight plain">
+                    <table>
+                        <tr>
+                            <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span
+                                        class="line">3</span><br><span class="line">4</span><br><span
+                                        class="line">5</span><br><span class="line">6</span><br><span
+                                        class="line">7</span><br><span class="line">8</span><br><span
+                                        class="line">9</span><br><span class="line">10</span><br><span
+                                        class="line">11</span><br><span class="line">12</span><br><span
+                                        class="line">13</span><br><span class="line">14</span><br></pre>
+                            </td>
+                            <td class="code">
+                                <pre><span class="line">new BigDecimal(0.10334)&#x3D;0.10334000000000000130118138486068346537649631500244140625</span><br><span
+                                        class="line">new BigDecimal(1234.0)&#x3D;1234</span><br><span
+                                        class="line"> </span><br><span class="line">new BigDecimal(String.valueOf(0.10334))&#x3D;0.10334</span><br><span
+                                        class="line">new BigDecimal(String.valueOf(1234.0))&#x3D;1234.0</span><br><span
+                                        class="line"> </span><br><span class="line">new BigDecimal(String.valueOf(0.10334))&#x3D;0.10334</span><br><span
+                                        class="line">new BigDecimal(String.valueOf(1234.0))&#x3D;1234.0</span><br><span
+                                        class="line"> </span><br><span class="line">BigDecimal.valueOf(0.10334)&#x3D;0.10334</span><br><span
+                                        class="line">BigDecimal.valueOf(1234.0)&#x3D;1234.0</span><br><span
+                                        class="line"> </span><br><span class="line">false</span><br><span
+                                        class="line">0</span><br></pre>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
 
-<br/>
+                <br/>
 
-<h2 id="联系博主"><a href="#联系博主" class="headerlink" title="联系博主"></a>联系博主</h2><div class="btns circle center grid5">
-            <a href=''>
-  <i class="fa fa-apple"></i>
-  <b>微信</b>
+                <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3>
+                <p>BigDecimal 类的 valueOf()方法源码</p>
+                <figure class="highlight plain">
+                    <table>
+                        <tr>
+                            <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span
+                                        class="line">3</span><br></pre>
+                            </td>
+                            <td class="code">
+                                <pre><span
+                                        class="line">public static BigDecimal valueOf(double val) &#123;</span><br><span
+                                        class="line">	return new BigDecimal(Double.toString(val));</span><br><span
+                                        class="line">&#125;</span><br></pre>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
 
-  <img src= "/buffifly/img/loading.gif" data-src='https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/%E5%8D%9A%E4%B8%BB%E5%BE%AE%E4%BF%A1.png'>
+                <p>BigDecimal类的几个常用方法</p>
+                <figure class="highlight plain">
+                    <table>
+                        <tr>
+                            <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span
+                                        class="line">3</span><br><span class="line">4</span><br><span
+                                        class="line">5</span><br><span class="line">6</span><br><span
+                                        class="line">7</span><br><span class="line">8</span><br><span
+                                        class="line">9</span><br><span class="line">10</span><br><span
+                                        class="line">11</span><br><span class="line">12</span><br><span
+                                        class="line">13</span><br><span class="line">14</span><br><span
+                                        class="line">15</span><br><span class="line">16</span><br><span
+                                        class="line">17</span><br><span class="line">18</span><br><span
+                                        class="line">19</span><br><span class="line">20</span><br><span
+                                        class="line">21</span><br><span class="line">22</span><br></pre>
+                            </td>
+                            <td class="code">
+                                <pre><span class="line">&#x2F;**</span><br><span class="line"> * 求余数</span><br><span
+                                        class="line"> * 返回值为 (this % divisor) 的 BigDecimal</span><br><span class="line"> *&#x2F;</span><br><span
+                                        class="line">BigDecimal remainder(BigDecimal divisor);</span><br><span
+                                        class="line"> </span><br><span class="line">&#x2F;**</span><br><span
+                                        class="line"> * 求相反数</span><br><span
+                                        class="line"> * 返回值是 (-this) 的 BigDecimal</span><br><span
+                                        class="line"> *&#x2F;</span><br><span
+                                        class="line">BigDecimal negate();</span><br><span class="line"> </span><br><span
+                                        class="line">&#x2F;**</span><br><span class="line"> * 将此 BigDecimal 与指定的 BigDecimal 比较</span><br><span
+                                        class="line"> * 根据此方法,值相等但具有不同标度的两个 BigDecimal 对象（如，2.0 和 2.00）被认为是相等的;</span><br><span
+                                        class="line"> * 相对六个 boolean 比较运算符 (&lt;, &#x3D;&#x3D;, &gt;, &gt;&#x3D;, !&#x3D;, &lt;&#x3D;) 中每一个运算符的各个方法,优先提供此方法;</span><br><span
+                                        class="line"> * 建议使用以下语句执行上述比较：(x.compareTo(y) &lt;op&gt; 0), 其中 &lt;op&gt; 是六个比较运算符之一;</span><br><span
+                                        class="line"> *</span><br><span class="line"> * 指定者：接口 Comparable&lt;BigDecimal&gt; 中的 compareTo</span><br><span
+                                        class="line"> * 返回：当此 BigDecimal 在数字上小于、等于或大于 val 时，返回 -1、0 或 1</span><br><span
+                                        class="line"> *&#x2F;</span><br><span class="line">int compareTo(BigDecimal val);</span><br></pre>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
 
-</a>
+                <h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3>
+                <figure class="highlight plain">
+                    <table>
+                        <tr>
+                            <td class="gutter">
+                                <pre><span class="line">1</span><br><span class="line">2</span><br><span
+                                        class="line">3</span><br><span class="line">4</span><br><span
+                                        class="line">5</span><br><span class="line">6</span><br><span
+                                        class="line">7</span><br><span class="line">8</span><br><span
+                                        class="line">9</span><br><span class="line">10</span><br><span
+                                        class="line">11</span><br><span class="line">12</span><br><span
+                                        class="line">13</span><br><span class="line">14</span><br><span
+                                        class="line">15</span><br><span class="line">16</span><br><span
+                                        class="line">17</span><br><span class="line">18</span><br><span
+                                        class="line">19</span><br><span class="line">20</span><br><span
+                                        class="line">21</span><br><span class="line">22</span><br><span
+                                        class="line">23</span><br><span class="line">24</span><br><span
+                                        class="line">25</span><br><span class="line">26</span><br><span
+                                        class="line">27</span><br><span class="line">28</span><br><span
+                                        class="line">29</span><br><span class="line">30</span><br><span
+                                        class="line">31</span><br><span class="line">32</span><br><span
+                                        class="line">33</span><br><span class="line">34</span><br><span
+                                        class="line">35</span><br><span class="line">36</span><br><span
+                                        class="line">37</span><br><span class="line">38</span><br><span
+                                        class="line">39</span><br><span class="line">40</span><br><span
+                                        class="line">41</span><br><span class="line">42</span><br><span
+                                        class="line">43</span><br><span class="line">44</span><br><span
+                                        class="line">45</span><br><span class="line">46</span><br><span
+                                        class="line">47</span><br><span class="line">48</span><br><span
+                                        class="line">49</span><br><span class="line">50</span><br><span
+                                        class="line">51</span><br><span class="line">52</span><br><span
+                                        class="line">53</span><br><span class="line">54</span><br><span
+                                        class="line">55</span><br><span class="line">56</span><br><span
+                                        class="line">57</span><br><span class="line">58</span><br><span
+                                        class="line">59</span><br><span class="line">60</span><br><span
+                                        class="line">61</span><br><span class="line">62</span><br><span
+                                        class="line">63</span><br><span class="line">64</span><br><span
+                                        class="line">65</span><br><span class="line">66</span><br><span
+                                        class="line">67</span><br><span class="line">68</span><br><span
+                                        class="line">69</span><br><span class="line">70</span><br><span
+                                        class="line">71</span><br><span class="line">72</span><br><span
+                                        class="line">73</span><br><span class="line">74</span><br><span
+                                        class="line">75</span><br><span class="line">76</span><br><span
+                                        class="line">77</span><br><span class="line">78</span><br><span
+                                        class="line">79</span><br><span class="line">80</span><br><span
+                                        class="line">81</span><br><span class="line">82</span><br></pre>
+                            </td>
+                            <td class="code">
+                                <pre><span class="line">package com.util;</span><br><span class="line"> </span><br><span
+                                        class="line">import java.math.BigDecimal;</span><br><span
+                                        class="line"> </span><br><span class="line">&#x2F;**</span><br><span
+                                        class="line"> * 提供精确的浮点数运算(包括加、减、乘、除、四舍五入)工具类</span><br><span class="line"> *&#x2F;</span><br><span
+                                        class="line">public class ArithUtil &#123;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;&#x2F; 除法运算默认精度</span><br><span class="line">	private static final int DEF_DIV_SCALE &#x3D; 10;</span><br><span
+                                        class="line"> </span><br><span
+                                        class="line">	private ArithUtil() &#123;</span><br><span
+                                        class="line"> </span><br><span class="line">	&#125;</span><br><span
+                                        class="line"> </span><br><span class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 精确加法</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double add(double value1, double value2) &#123;</span><br><span
+                                        class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span
+                                        class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span
+                                        class="line">		return b1.add(b2).doubleValue();</span><br><span
+                                        class="line">	&#125;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 精确减法</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double sub(double value1, double value2) &#123;</span><br><span
+                                        class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span
+                                        class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span
+                                        class="line">		return b1.subtract(b2).doubleValue();</span><br><span
+                                        class="line">	&#125;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 精确乘法</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double mul(double value1, double value2) &#123;</span><br><span
+                                        class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span
+                                        class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span
+                                        class="line">		return b1.multiply(b2).doubleValue();</span><br><span
+                                        class="line">	&#125;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;**</span><br><span class="line">	 * 精确除法 使用默认精度</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double div(double value1, double value2) throws IllegalAccessException &#123;</span><br><span
+                                        class="line">		return div(value1, value2, DEF_DIV_SCALE);</span><br><span
+                                        class="line">	&#125;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 精确除法</span><br><span
+                                        class="line">	 * @param scale 精度</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double div(double value1, double value2, int scale) throws IllegalAccessException &#123;</span><br><span
+                                        class="line">		if(scale &lt; 0) &#123;</span><br><span class="line">			throw new IllegalAccessException(&quot;精确度不能小于0&quot;);</span><br><span
+                                        class="line">		&#125;</span><br><span class="line">		BigDecimal b1 &#x3D; BigDecimal.valueOf(value1);</span><br><span
+                                        class="line">		BigDecimal b2 &#x3D; BigDecimal.valueOf(value2);</span><br><span
+                                        class="line">		&#x2F;&#x2F; return b1.divide(b2, scale).doubleValue();</span><br><span
+                                        class="line">		return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).doubleValue();</span><br><span
+                                        class="line">	&#125;</span><br><span class="line"> </span><br><span
+                                        class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 四舍五入</span><br><span class="line">	 * @param scale 小数点后保留几位</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static double round(double v, int scale) throws IllegalAccessException &#123;</span><br><span
+                                        class="line">		return div(v, 1, scale);</span><br><span class="line">	&#125;</span><br><span
+                                        class="line">	</span><br><span class="line">	&#x2F;**</span><br><span
+                                        class="line">	 * 比较大小</span><br><span
+                                        class="line">	 *&#x2F;</span><br><span class="line">	public static boolean equalTo(BigDecimal b1, BigDecimal b2) &#123;</span><br><span
+                                        class="line">		if(b1 &#x3D;&#x3D; null || b2 &#x3D;&#x3D; null) &#123;</span><br><span
+                                        class="line">			return false;</span><br><span class="line">		&#125;</span><br><span
+                                        class="line">		return 0 &#x3D;&#x3D; b1.compareTo(b2);</span><br><span
+                                        class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre>
+                            </td>
+                        </tr>
+                    </table>
+                </figure>
 
-<a href=''>
-  <i class="fa fa-apple"></i>
-  <b>公众号</b>
-  <img src= "/buffifly/img/loading.gif" data-src='https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg'>
-</a>
+                <br/>
 
-          </div></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Hello World攻城狮</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.ljc.cn.com/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/">http://www.ljc.cn.com/buffifly/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.ljc.cn.com/buffifly" target="_blank">LJC’sBlog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/buffifly/tags/Java/">Java</a></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script></div></div><div class="post-reward"><button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/buffifly/img/wechat.jpg" alt="wechat" onclick="window.open('/buffifly/img/wechat.jpg')"/><div class="post-qr-code__desc">wechat</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/buffifly/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/"><img class="prev-cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg28.jpg" onerror="onerror=null;src='/buffifly/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Mysql索引</div></div></a></div><div class="next-post pull-right"><a href="/buffifly/2021/09/03/Java%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><img class="next-cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg25.jpg" onerror="onerror=null;src='/buffifly/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java集合常用面试题</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/buffifly/2021/07/27/JWT单点登录/" title="JWT单点登录"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg13.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-27</div><div class="relatedPosts_title">JWT单点登录</div></div></a></div><div class="relatedPosts_item"><a href="/buffifly/2021/07/12/Java的深拷贝和浅拷贝/" title="Java的深拷贝和浅拷贝"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-12</div><div class="relatedPosts_title">Java的深拷贝和浅拷贝</div></div></a></div><div class="relatedPosts_item"><a href="/buffifly/2021/07/23/为什么要使用Optional/" title="为什么要使用Optional?"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg11.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-23</div><div class="relatedPosts_title">为什么要使用Optional?</div></div></a></div><div class="relatedPosts_item"><a href="/buffifly/2021/08/25/HashMap源码分析/" title="HashMap源码分析"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg24.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div><div class="relatedPosts_title">HashMap源码分析</div></div></a></div><div class="relatedPosts_item"><a href="/buffifly/2021/08/24/ArrayList源码+扩容机制分析/" title="ArrayList源码+扩容机制分析"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg22.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="relatedPosts_title">ArrayList源码+扩容机制分析</div></div></a></div><div class="relatedPosts_item"><a href="/buffifly/2021/09/03/LinkedList源码分析/" title="LinkedList源码分析"><img class="relatedPosts_cover" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg26.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-03</div><div class="relatedPosts_title">LinkedList源码分析</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
-  var requestSetting = function (from,set) {
-    var from = from
-    var setting = set.split(',').filter(function(item){
-    return from.indexOf(item) > -1
-    });
-    setting = setting.length == 0 ? from :setting;
-    return setting
-  }
+                <h2 id="联系博主"><a href="#联系博主" class="headerlink" title="联系博主"></a>联系博主</h2>
+                <div class="btns circle center grid5">
+                    <a href=''>
+                        <i class="fa fa-apple"></i>
+                        <b>微信</b>
 
-  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
-  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+                        <img src="/img/loading.gif"
+                             data-src='https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/%E5%8D%9A%E4%B8%BB%E5%BE%AE%E4%BF%A1.png'>
 
-  function initValine () {
-    window.valine = new Valine({
-      el:'#vcomment',
-      appId: 'hzI4aFPUvrMgxa6AcgvKGw5z-MdYXbMMI',
-      appKey: 'Op31Q58se1JWIr2dJUBIyKQX',
-      placeholder: '请留下你的姓名',
-      avatar: 'monsterid',
-      meta: guestInfo,
-      pageSize: '7',
-      lang: 'zh-CN',
-      recordIP: true,
-      serverURLs: '',
-      emojiCDN: '',
-      emojiMaps: "",
-      enableQQ: true,
-      requiredFields: requiredFields
-    });
-  }
-  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
-}
+                    </a>
 
-if ('Valine' === 'Valine' || false) {
-  window.addEventListener('load', loadvaline)
-}
-else {
-  function loadOtherComment () {
-    loadvaline()
-  }
-}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Hello World攻城狮</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/buffifly/js/utils.js"></script><script src="/buffifly/js/main.js"></script><script src="/buffifly/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="ribbon_piao" mobile="true" src="/buffifly/js/third-party/piao.js"></script><script src="/buffifly/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+                    <a href=''>
+                        <i class="fa fa-apple"></i>
+                        <b>公众号</b>
+                        <img src="/img/loading.gif"
+                             data-src='https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81.jpg'>
+                    </a>
+
+                </div>
+            </div>
+            <div class="post-copyright">
+                <div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span
+                        class="post-copyright-info"><a href="mailto:undefined">Hello World攻城狮</a></span></div>
+                <div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span
+                        class="post-copyright-info"><a
+                        href="http://www.ljc.cn.com/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/">http://www.ljc.cn.com/2021/09/04/Java%E4%B8%AD%E7%9A%84BigDecimal%E7%B1%BB%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/</a></span>
+                </div>
+                <div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span
+                        class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a
+                        href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a
+                        href="http://www.ljc.cn.com" target="_blank">LJC’sBlog</a>！</span></div>
+            </div>
+            <div class="tag_share">
+                <div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div>
+                <div class="post_share">
+                    <div class="addthis_inline_share_toolbox"></div>
+                    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async="async"></script>
+                </div>
+            </div>
+            <div class="post-reward">
+                <button class="reward-button" type="button"><i class="fas fa-qrcode"></i> 打赏
+                    <div class="reward-main">
+                        <ul class="reward-all">
+                            <li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.jpg" alt="wechat"
+                                                         onclick="window.open('/img/wechat.jpg')"/>
+                                <div class="post-qr-code__desc">wechat</div>
+                            </li>
+                        </ul>
+                    </div>
+                </button>
+            </div>
+            <nav class="pagination-post" id="pagination">
+                <div class="prev-post pull-left"><a href="/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/"><img class="prev-cover"
+                                                                                                     data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg28.jpg"
+                                                                                                     onerror="onerror=null;src='/img/404.jpg'">
+                    <div class="pagination-info">
+                        <div class="label">上一篇</div>
+                        <div class="prev_info">Mysql索引</div>
+                    </div>
+                </a></div>
+                <div class="next-post pull-right"><a
+                        href="/2021/09/03/Java%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><img
+                        class="next-cover"
+                        data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg25.jpg"
+                        onerror="onerror=null;src='/img/404.jpg'">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">Java集合常用面试题</div>
+                    </div>
+                </a></div>
+            </nav>
+            <div class="relatedPosts">
+                <div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div>
+                <div class="relatedPosts_list">
+                    <div class="relatedPosts_item"><a href="/2021/07/27/JWT单点登录/" title="JWT单点登录"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg13.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-27</div>
+                            <div class="relatedPosts_title">JWT单点登录</div>
+                        </div>
+                    </a></div>
+                    <div class="relatedPosts_item"><a href="/2021/07/12/Java的深拷贝和浅拷贝/" title="Java的深拷贝和浅拷贝"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-12</div>
+                            <div class="relatedPosts_title">Java的深拷贝和浅拷贝</div>
+                        </div>
+                    </a></div>
+                    <div class="relatedPosts_item"><a href="/2021/07/23/为什么要使用Optional/" title="为什么要使用Optional?"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg11.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-23</div>
+                            <div class="relatedPosts_title">为什么要使用Optional?</div>
+                        </div>
+                    </a></div>
+                    <div class="relatedPosts_item"><a href="/2021/08/25/HashMap源码分析/" title="HashMap源码分析"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg24.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-25</div>
+                            <div class="relatedPosts_title">HashMap源码分析</div>
+                        </div>
+                    </a></div>
+                    <div class="relatedPosts_item"><a href="/2021/08/24/ArrayList源码+扩容机制分析/" title="ArrayList源码+扩容机制分析"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg22.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div>
+                            <div class="relatedPosts_title">ArrayList源码+扩容机制分析</div>
+                        </div>
+                    </a></div>
+                    <div class="relatedPosts_item"><a href="/2021/09/03/LinkedList源码分析/" title="LinkedList源码分析"><img
+                            class="relatedPosts_cover"
+                            data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg26.jpg">
+                        <div class="relatedPosts_main is-center">
+                            <div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-03</div>
+                            <div class="relatedPosts_title">LinkedList源码分析</div>
+                        </div>
+                    </a></div>
+                </div>
+            </div>
+            <hr>
+            <div id="post-comment">
+                <div class="comment-head">
+                    <div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div>
+                </div>
+                <div class="comment-wrap">
+                    <div class="comments-items-1" data-name="Valine">
+                        <div class="vcomment" id="vcomment"></div>
+                        <script>function loadvaline() {
+                            var requestSetting = function (from, set) {
+                                var from = from
+                                var setting = set.split(',').filter(function (item) {
+                                    return from.indexOf(item) > -1
+                                });
+                                setting = setting.length == 0 ? from : setting;
+                                return setting
+                            }
+
+                            var guestInfo = requestSetting(['nick', 'mail', 'link'], 'nick,mail,link')
+                            var requiredFields = requestSetting(['nick', 'mail'], 'nick,mail')
+
+                            function initValine() {
+                                window.valine = new Valine({
+                                    el: '#vcomment',
+                                    appId: 'hzI4aFPUvrMgxa6AcgvKGw5z-MdYXbMMI',
+                                    appKey: 'Op31Q58se1JWIr2dJUBIyKQX',
+                                    placeholder: '请留下你的姓名',
+                                    avatar: 'monsterid',
+                                    meta: guestInfo,
+                                    pageSize: '7',
+                                    lang: 'zh-CN',
+                                    recordIP: true,
+                                    serverURLs: '',
+                                    emojiCDN: '',
+                                    emojiMaps: "",
+                                    enableQQ: true,
+                                    requiredFields: requiredFields
+                                });
+                            }
+
+                            loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+                        }
+
+                        if ('Valine' === 'Valine' || false) {
+                            window.addEventListener('load', loadvaline)
+                        } else {
+                            function loadOtherComment() {
+                                loadvaline()
+                            }
+                        }</script>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer id="footer" data-type="color">
+        <div id="footer-wrap">
+            <div class="copyright">&copy;2020 - 2021 By Hello World攻城狮</div>
+            <div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span
+                    class="footer-separator">|</span><span>主题 </span><a
+                    href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<section id="rightside">
+    <div id="rightside-config-hide">
+        <button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button>
+        <button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button>
+        <button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button>
+        <button id="translateLink" type="button" title="简繁转换">繁</button>
+        <button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button>
+    </div>
+    <div id="rightside-config-show">
+        <button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button>
+        <a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a>
+        <button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button>
+        <button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button>
+    </div>
+</section>
+<div class="search-dialog" id="algolia-search">
+    <div class="search-dialog__title" id="algolia-search-title">Algolia</div>
+    <div id="algolia-input-panel">
+        <div id="algolia-search-input"></div>
+    </div>
+    <hr/>
+    <div id="algolia-search-results">
+        <div id="algolia-hits"></div>
+        <div id="algolia-pagination"></div>
+        <div id="algolia-stats"></div>
+    </div>
+    <span class="search-close-button"><i class="fas fa-times"></i></span></div>
+<div class="search-mask"></div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/tw_cn.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script>
+<script id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script>
+<script src="/js/third-party/activate-power-mode.js"></script>
+<script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 document.body.addEventListener('input', POWERMODE);
-</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
-  pangu.autoSpacingPage()
-})</script><script src="/buffifly/js/search/algolia.js"></script><script src="/buffifly/js/VolantisTags.js"></script><script src="/buffifly/js/volantis.js"></script><script defer src="/live2d-widget/autoload.js"></script><script>var endLoading = function () {
-  document.body.style.overflow = 'auto';
-  document.getElementById('loading-box').classList.add("loaded")
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    pangu.autoSpacingPage()
+})</script>
+<script src="/js/search/algolia.js"></script>
+<script src="/js/VolantisTags.js"></script>
+<script src="/js/volantis.js"></script>
+<script defer src="/live2d-widget/autoload.js"></script>
+<script>var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
 }
-window.addEventListener('load',endLoading)</script><script src="/buffifly/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/buffifly/live2dw/assets/haruto.model.json"},"display":{"position":"lift","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+window.addEventListener('load', endLoading)</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script>
+<script>L2Dwidget.init({
+    "model": {"jsonPath": "/live2dw/assets/haruto.model.json"},
+    "display": {"position": "lift", "width": 150, "height": 300},
+    "mobile": {"show": false},
+    "log": false,
+    "pluginJsPath": "lib/",
+    "pluginModelPath": "assets/",
+    "pluginRootPath": "live2dw/",
+    "tagMode": false
+});</script>
+</body>
+</html>
