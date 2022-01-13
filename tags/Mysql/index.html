@@ -1,184 +1,759 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>标签: Mysql | LJC’sBlog</title><meta name="description" content="Hello World攻城狮"><meta name="author" content="Hello World攻城狮"><meta name="copyright" content="Hello World攻城狮"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/buffifly/img/favicon.ico"><link rel="canonical" href="http://www.ljc.cn.com/buffifly/tags/Mysql/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="website"><meta property="og:title" content="标签: Mysql"><meta property="og:url" content="http://www.ljc.cn.com/buffifly/tags/Mysql/"><meta property="og:site_name" content="LJC’sBlog"><meta property="og:description" content="Hello World攻城狮"><meta property="og:image" content="http://www.ljc.cn.com/buffifly/img/avatar.png"><meta property="article:published_time" content="2022-01-13T13:02:22.160Z"><meta property="article:modified_time" content="2022-01-13T13:02:22.160Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
-  document.documentElement.setAttribute('data-theme', 'dark')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
-  }
-}
-var activateLightMode = function () {
-  document.documentElement.setAttribute('data-theme', 'light')
-  if (document.querySelector('meta[name="theme-color"]') !== null) {
-    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
-  }
-}
-
-var getCookies = function (name) {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-}
-
-var autoChangeMode = 'false'
-var t = getCookies('theme')
-if (autoChangeMode === '1') {
-  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
-  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
-  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
-  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
-
-  if (t === undefined) {
-    if (isLightMode) activateLightMode()
-    else if (isDarkMode) activateDarkMode()
-    else if (isNotSpecified || hasNoSupport) {
-      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
-      var now = new Date()
-      var hour = now.getHours()
-      var isNight = hour <= 6 || hour >= 18
-      isNight ? activateDarkMode() : activateLightMode()
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>标签: Mysql | LJC’sBlog</title>
+    <meta name="description" content="Hello World攻城狮">
+    <meta name="author" content="Hello World攻城狮">
+    <meta name="copyright" content="Hello World攻城狮">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="canonical" href="http://www.ljc.cn.com/tags/Mysql/">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="preconnect" href="//cdn.jsdelivr.net"/>
+    <link rel="preconnect" href="//hm.baidu.com"/>
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/>
+    <link rel="preconnect" href="//busuanzi.ibruce.info"/>
+    <link rel="preconnect" href="//zz.bdstatic.com"/>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="标签: Mysql">
+    <meta property="og:url" content="http://www.ljc.cn.com/tags/Mysql/">
+    <meta property="og:site_name" content="LJC’sBlog">
+    <meta property="og:description" content="Hello World攻城狮">
+    <meta property="og:image" content="http://www.ljc.cn.com/img/avatar.png">
+    <meta property="article:published_time" content="2022-01-13T13:02:22.160Z">
+    <meta property="article:modified_time" content="2022-01-13T13:02:22.160Z">
+    <meta name="twitter:card" content="summary">
+    <script>var activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+        }
     }
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
-      if (Cookies.get('theme') === undefined) {
-        e.matches ? activateDarkMode() : activateLightMode()
-      }
-    })
-  } else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else if (autoChangeMode === '2') {
-  now = new Date()
-  hour = now.getHours()
-  isNight = hour <= 6 || hour >= 18
-  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-  else if (t === 'light') activateLightMode()
-  else activateDarkMode()
-} else {
-  if (t === 'dark') activateDarkMode()
-  else if (t === 'light') activateLightMode()
-}</script><link rel="stylesheet" href="/buffifly/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script><script>var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?true";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
-  root: '/buffifly/',
-  algolia: {"appId":"VFLGY3NZZ8","apiKey":"9082a51b290f5be0d72a453a5e7d71a5","indexName":"ljc","hits":{"per_page":7},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  bookmark: {
-    message_prev: '按',
-    message_next: '键将本页加入书签'
-  },
-  runtime_unit: '天',
-  runtime: true,
-  copyright: undefined,
-  ClickShowText: undefined,
-  medium_zoom: true,
-  fancybox: true,
-  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
-  justifiedGallery: {
-    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-  },
-  baiduPush: true,
-  highlightCopy: true,
-  highlightLang: true,
-  isPhotoFigcaption: true,
-  islazyload: true,
-  isanchor: true    
-}</script><script>var GLOBAL_CONFIG_SITE = { 
-  isPost: false,
-  isHome: false,
-  isHighlightShrink: false,
-  isSidebar: false,
-  postUpdate: '2022-01-13 21:02:22'
-}</script><noscript><style>
-#nav {
-  opacity: 1
-}
-.justified-gallery img{
-  opacity: 1
-}
-</style></noscript><link rel="stylesheet" href="/buffifly/css/VolantisTags.css"><link rel="stylesheet" href="/buffifly/css/volantis.css"><link rel="stylesheet" href="/buffifly/css/fontAnimation.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css"><meta name="generator" content="Hexo 4.2.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/buffifly/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/buffifly/archives/"><div class="headline">文章</div><div class="length_num">35</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/buffifly/tags/"><div class="headline">标签</div><div class="length_num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/buffifly/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/buffifly/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/buffifly/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="not-index-bg" id="page-header" style="background-image: url(/buffifly/img/cover/bg0.jpg,/img/cover/bg1.jpg,/img/cover/bg2.jpg,/img/cover/bg3.jpg,/img/cover/bg4.jpg,/img/cover/bg5.jpg,/img/cover/bg6.jpg,/img/cover/bg7.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg8.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg9.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg10.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/buffifly/">LJC’sBlog</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/buffifly/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/buffifly/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/buffifly/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/buffifly/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="page_site-info"><h1 id="site_title">Mysql</h1></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts">   <div class="recent-post-item"><div class="post_cover left_radius"><a href="/buffifly/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/" title="MYSQL递归查询">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg33.png" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="MYSQL递归查询"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/" title="MYSQL递归查询">MYSQL递归查询</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-12-27 22:19:13"><i class="far fa-calendar-alt"></i>2021-12-27</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">MySQL中实现递归查询对于数据库中的树形结构数据，如部门表，有时候，我们需要知道某部门的所有下属部分或者某部分的所有上级部门，这时候就需要用到mysql的递归查询
-1、创建表123456789DROP TABLE IF EXISTS &#96;t_areainfo&#96;;CREATE TABLE &#96;t_areainfo&#96; ( &#96;id&#96; int(11) NOT &#39;0&#39; AUTO_INCREMENT, &#96;level&#96; int(11) DEFAULT &#39;0&#39;, &#96;name&#96; varchar(255) DEFAULT &#39;0&#39;, &#96;parentId&#96; int(11) DEFAULT &#39;0&#39;, &#96;status&#96; int(11) DEFAULT &#39;0&#39;, PRIMARY KEY (&#96;id&#96;)) ENGINE&#x3D;InnoDB AUTO_INCREMENT&#x3D;65 DEFAULT CHARSET&#x3D;utf8;
+    var activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+        }
+    }
 
-2、初始数据12345678910111213141516171819202122232425262728293031323334353637383940414243444 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/buffifly/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="一千行MySQL学习笔记">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="一千行MySQL学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="一千行MySQL学习笔记">一千行MySQL学习笔记</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-09-07 23:27:38"><i class="far fa-calendar-alt"></i>2021-09-07</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">基本操作123456789&#x2F;* Windows服务 *&#x2F;-- 启动MySQL    net start mysql-- 创建Windows服务    sc create mysql binPath&#x3D; mysqld_bin_path(注意：等号与值之间有空格)&#x2F;* 连接与断开服务器 *&#x2F;mysql -h 地址 -P 端口 -u 用户名 -p 密码SHOW PROCESSLIST -- 显示哪些线程正在运行SHOW VARIABLES -- 显示系统变量信息
+    var getCookies = function (name) {
+        const value = `; ${document.cookie}`
+        const parts = value.split(`; ${name}=`)
+        if (parts.length === 2) return parts.pop().split(';').shift()
+    }
 
-数据库操作12345678910111213141516171819&#x2F;* 数据库操作 *&#x2F; -------------------- 查看当前数据库    SELECT DATABASE();-- 显示当前时间、用户名、数据库版本    SELECT now(), user(), version();-- 创建库    CREATE DATABASE[ IF NOT EXISTS] 数据库名 数据库选项    数据库选项：        CHARACTER SET charset_name        COLLATE collation_name-- 查看已有库    SHOW DATABASES[ LIKE &#39;PATTERN&#39;]-- 查看当 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/buffifly/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" title="MySQL事务隔离级别">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="MySQL事务隔离级别"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" title="MySQL事务隔离级别">MySQL事务隔离级别</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-09-07 23:23:57"><i class="far fa-calendar-alt"></i>2021-09-07</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">什么是事务?事务是逻辑上的一组操作，要么都执行，要么都不执行。
-事务最经典也经常被拿出来说例子就是转账了。假如小明要给小红转账1000元，这个转账会涉及到两个关键操作就是：将小明的余额减少1000元，将小红的余额增加1000元。万一在这两个操作之间突然出现错误比如银行系统崩溃，导致小明余额减少而小红的余额没有增加，这样就不对了。事务就是保证这两个关键操作要么都成功，要么都要失败。
-事务的特性(ACID)
+    var autoChangeMode = 'false'
+    var t = getCookies('theme')
+    if (autoChangeMode === '1') {
+        var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+        var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+        var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-原子性： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
-一致性： 执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；
-隔离性： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
-持久性： 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
+        if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+                console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+                var now = new Date()
+                var hour = now.getHours()
+                var isNight = hour <= 6 || hour >= 18
+                isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+                if (Cookies.get('theme') === undefined) {
+                    e.matches ? activateDarkMode() : activateLightMode()
+                }
+            })
+        } else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+    } else if (autoChangeMode === '2') {
+        now = new Date()
+        hour = now.getHours()
+        isNight = hour <= 6 || hour >= 18
+        if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+        else if (t === 'light') activateLightMode()
+        else activateDarkMode()
+    } else {
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+    }</script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.5/dist/instantsearch.min.js" defer></script>
+    <script>var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?true";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap">
+    <script>var GLOBAL_CONFIG = {
+        root: '/',
+        algolia: {
+            "appId": "VFLGY3NZZ8",
+            "apiKey": "9082a51b290f5be0d72a453a5e7d71a5",
+            "indexName": "ljc",
+            "hits": {"per_page": 7},
+            "languages": {
+                "input_placeholder": "搜索文章",
+                "hits_empty": "找不到您查询的内容:${query}",
+                "hits_stats": "找到 ${hits} 条结果，用时 ${time} 毫秒"
+            }
+        },
+        localSearch: {"path": "search.xml", "languages": {"hits_empty": "找不到您查询的内容:${query}"}},
+        translate: {
+            "defaultEncoding": 2,
+            "translateDelay": 0,
+            "msgToTraditionalChinese": "繁",
+            "msgToSimplifiedChinese": "簡"
+        },
+        noticeOutdate: {
+            "limitDay": 500,
+            "position": "top",
+            "messagePrev": "It has been",
+            "messageNext": "days since the last update, the content of the article may be outdated."
+        },
+        copy: {
+            success: '复制成功',
+            error: '复制错误',
+            noSupport: '浏览器不支持'
+        },
+        bookmark: {
+            message_prev: '按',
+            message_next: '键将本页加入书签'
+        },
+        runtime_unit: '天',
+        runtime: true,
+        copyright: undefined,
+        ClickShowText: undefined,
+        medium_zoom: true,
+        fancybox: true,
+        Snackbar: {
+            "bookmark": {"message_prev": "按", "message_next": "键将本页加入书签"},
+            "chs_to_cht": "你已切换为繁体",
+            "cht_to_chs": "你已切换为简体",
+            "day_to_night": "你已切换为深色模式",
+            "night_to_day": "你已切换为浅色模式",
+            "bgLight": "#49b1f5",
+            "bgDark": "#121212",
+            "position": "top-center"
+        },
+        justifiedGallery: {
+            js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+            css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+        },
+        baiduPush: true,
+        highlightCopy: true,
+        highlightLang: true,
+        isPhotoFigcaption: true,
+        islazyload: true,
+        isanchor: true
+    }</script>
+    <script>var GLOBAL_CONFIG_SITE = {
+        isPost: false,
+        isHome: false,
+        isHighlightShrink: false,
+        isSidebar: false,
+        postUpdate: '2022-01-13 21:02:22'
+    }</script>
+    <noscript>
+        <style>
+            #nav {
+                opacity: 1
+            }
 
-并发事务带来的问题在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对统一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。
+            .justified-gallery img {
+                opacity: 1
+            }
+        </style>
+    </noscript>
+    <link rel="stylesheet" href="/css/VolantisTags.css">
+    <link rel="stylesheet" href="/css/volantis.css">
+    <link rel="stylesheet" href="/css/fontAnimation.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/mainColor/heoMainColor.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/poem.css">
+    <meta name="generator" content="Hexo 4.2.1">
+</head>
+<body>
+<div id="loading-box">
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+        <div class="configure-border-1">
+            <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+            <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+    </div>
+</div>
+<div id="mobile-sidebar">
+    <div id="menu_mask"></div>
+    <div id="mobile-sidebar-menus">
+        <div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png"
+                                             onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div>
+        <div class="mobile_post_data">
+            <div class="mobile_data_item is-center">
+                <div class="mobile_data_link"><a href="/archives/">
+                    <div class="headline">文章</div>
+                    <div class="length_num">35</div>
+                </a></div>
+            </div>
+            <div class="mobile_data_item is-center">
+                <div class="mobile_data_link"><a href="/tags/">
+                    <div class="headline">标签</div>
+                    <div class="length_num">11</div>
+                </a></div>
+            </div>
+        </div>
+        <hr/>
+        <div class="menus_items">
+            <div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a>
+            </div>
+            <div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i
+                    class="fas fa-chevron-down menus-expand"></i></a>
+                <ul class="menus_item_child">
+                    <li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li>
+                </ul>
+            </div>
+            <div class="menus_item"><a class="site-page" href="/about/"><i
+                    class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div>
+        </div>
+    </div>
+</div>
+<div id="body-wrap">
+    <div id="web_bg" data-type="photo"></div>
+    <header class="not-index-bg" id="page-header"
+            style="background-image: url(/img/cover/bg0.jpg,/img/cover/bg1.jpg,/img/cover/bg2.jpg,/img/cover/bg3.jpg,/img/cover/bg4.jpg,/img/cover/bg5.jpg,/img/cover/bg6.jpg,/img/cover/bg7.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg8.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg9.jpg,https:/lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg10.jpg)">
+        <nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">LJC’sBlog</a></span><span
+                class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i
+                class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div
+                class="menus_item"><a class="site-page" href="/"><i
+                class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page"
+                                                                                                   href="/archives/"><i
+                class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page"
+                                                                                                       href="/tags/"><i
+                class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page"><i
+                class="fa-fw fas fa-list"></i><span> 远方杂谈</span><i class="fas fa-chevron-down menus-expand"></i></a><ul
+                class="menus_item_child"><li><a class="site-page" href="/music/"><i
+                class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a
+                class="site-page" href="/about/"><i
+                class="fa-fw fas fa-heart"></i><span> 关于我的</span></a></div></div><span class="toggle-menu close"><a
+                class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav>
+        <div id="page_site-info"><h1 id="site_title">Mysql</h1></div>
+    </header>
+    <main class="layout_page" id="content-inner">
+        <div class="recent-posts" id="recent-posts">
+            <div class="recent-post-item">
+                <div class="post_cover left_radius"><a href="/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/"
+                                                       title="MYSQL递归查询"> <img class="post_bg"
+                                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg33.png"
+                                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                                               alt="MYSQL递归查询"></a></div>
+                <div class="recent-post-info"><a class="article-title"
+                                                 href="/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/"
+                                                 title="MYSQL递归查询">MYSQL递归查询</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-12-27 22:19:13"><i
+                                class="far fa-calendar-alt"></i>2021-12-27
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">
+                        MySQL中实现递归查询对于数据库中的树形结构数据，如部门表，有时候，我们需要知道某部门的所有下属部分或者某部分的所有上级部门，这时候就需要用到mysql的递归查询
+                        1、创建表123456789DROP TABLE IF EXISTS &#96;t_areainfo&#96;;CREATE TABLE &#96;t_areainfo&#96; (
+                        &#96;id&#96; int(11) NOT &#39;0&#39; AUTO_INCREMENT, &#96;level&#96; int(11) DEFAULT &#39;0&#39;,
+                        &#96;name&#96; varchar(255) DEFAULT &#39;0&#39;, &#96;parentId&#96; int(11) DEFAULT &#39;0&#39;,
+                        &#96;status&#96; int(11) DEFAULT &#39;0&#39;, PRIMARY KEY (&#96;id&#96;)) ENGINE&#x3D;InnoDB
+                        AUTO_INCREMENT&#x3D;65 DEFAULT CHARSET&#x3D;utf8;
 
-脏读（Dirty read）: 当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/buffifly/2021/09/06/MySQL%E9%AB%98%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE/" title="MySQL高性能优化规范建议">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg29.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="MySQL高性能优化规范建议"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/09/06/MySQL%E9%AB%98%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE/" title="MySQL高性能优化规范建议">MySQL高性能优化规范建议</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-09-06 19:58:28"><i class="far fa-calendar-alt"></i>2021-09-06</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">数据库命令规范
-所有数据库对象名称必须使用小写字母并用下划线分割
-所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）
-数据库对象的命名要能做到见名识意，并且最后不要超过 32 个字符
-临时库表必须以 tmp_为前缀并以日期为后缀，备份表必须以 bak_为前缀并以日期 (时间戳) 为后缀
-所有存储相同数据的列名和列类型必须一致（一般作为关联列，如果查询时关联列类型不一致会自动进行数据类型隐式转换，会造成列上的索引失效，导致查询效率降低）
+                        2、初始数据12345678910111213141516171819202122232425262728293031323334353637383940414243444 ...
+                    </div>
+                </div>
+            </div>
+            <div class="recent-post-item">
+                <div class="post_cover right_radius"><a
+                        href="/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                        title="一千行MySQL学习笔记"> <img class="post_bg"
+                                                   data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg"
+                                                   onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                   alt="一千行MySQL学习笔记"></a></div>
+                <div class="recent-post-info"><a class="article-title"
+                                                 href="/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                                                 title="一千行MySQL学习笔记">一千行MySQL学习笔记</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-09-07 23:27:38"><i
+                                class="far fa-calendar-alt"></i>2021-09-07
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">基本操作123456789&#x2F;* Windows服务 *&#x2F;-- 启动MySQL net start mysql-- 创建Windows服务
+                        sc create mysql binPath&#x3D; mysqld_bin_path(注意：等号与值之间有空格)&#x2F;* 连接与断开服务器 *&#x2F;mysql -h 地址
+                        -P 端口 -u 用户名 -p 密码SHOW PROCESSLIST -- 显示哪些线程正在运行SHOW VARIABLES -- 显示系统变量信息
+
+                        数据库操作12345678910111213141516171819&#x2F;* 数据库操作 *&#x2F; -------------------- 查看当前数据库 SELECT
+                        DATABASE();-- 显示当前时间、用户名、数据库版本 SELECT now(), user(), version();-- 创建库 CREATE DATABASE[ IF NOT
+                        EXISTS] 数据库名 数据库选项 数据库选项： CHARACTER SET charset_name COLLATE collation_name-- 查看已有库 SHOW
+                        DATABASES[ LIKE &#39;PATTERN&#39;]-- 查看当 ...
+                    </div>
+                </div>
+            </div>
+            <div class="recent-post-item">
+                <div class="post_cover left_radius"><a
+                        href="/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"
+                        title="MySQL事务隔离级别"> <img class="post_bg"
+                                                  data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg"
+                                                  onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL事务隔离级别"></a>
+                </div>
+                <div class="recent-post-info"><a class="article-title"
+                                                 href="/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"
+                                                 title="MySQL事务隔离级别">MySQL事务隔离级别</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-09-07 23:23:57"><i
+                                class="far fa-calendar-alt"></i>2021-09-07
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">什么是事务?事务是逻辑上的一组操作，要么都执行，要么都不执行。
+                        事务最经典也经常被拿出来说例子就是转账了。假如小明要给小红转账1000元，这个转账会涉及到两个关键操作就是：将小明的余额减少1000元，将小红的余额增加1000元。万一在这两个操作之间突然出现错误比如银行系统崩溃，导致小明余额减少而小红的余额没有增加，这样就不对了。事务就是保证这两个关键操作要么都成功，要么都要失败。
+                        事务的特性(ACID)
+
+                        原子性： 事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；
+                        一致性： 执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；
+                        隔离性： 并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；
+                        持久性： 一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。
+
+                        并发事务带来的问题在典型的应用程序中，多个事务并发运行，经常会操作相同的数据来完成各自的任务（多个用户对统一数据进行操作）。并发虽然是必须的，但可能会导致以下的问题。
+
+                        脏读（Dirty read）:
+                        当一个事务正在访问数据并且对数据进行了修改，而这种修改还没有提交到数据库中，这时另外一个事务也访问了这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个事务读 ...
+                    </div>
+                </div>
+            </div>
+            <div class="recent-post-item">
+                <div class="post_cover right_radius"><a
+                        href="/2021/09/06/MySQL%E9%AB%98%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE/"
+                        title="MySQL高性能优化规范建议"> <img class="post_bg"
+                                                     data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg29.jpg"
+                                                     onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                     alt="MySQL高性能优化规范建议"></a></div>
+                <div class="recent-post-info"><a class="article-title"
+                                                 href="/2021/09/06/MySQL%E9%AB%98%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%A7%84%E8%8C%83%E5%BB%BA%E8%AE%AE/"
+                                                 title="MySQL高性能优化规范建议">MySQL高性能优化规范建议</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-09-06 19:58:28"><i
+                                class="far fa-calendar-alt"></i>2021-09-06
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">数据库命令规范
+                        所有数据库对象名称必须使用小写字母并用下划线分割
+                        所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）
+                        数据库对象的命名要能做到见名识意，并且最后不要超过 32 个字符
+                        临时库表必须以 tmp_为前缀并以日期为后缀，备份表必须以 bak_为前缀并以日期 (时间戳) 为后缀
+                        所有存储相同数据的列名和列类型必须一致（一般作为关联列，如果查询时关联列类型不一致会自动进行数据类型隐式转换，会造成列上的索引失效，导致查询效率降低）
 
 
-数据库基本设计规范1. 所有表必须使用 Innodb 存储引擎没有特殊要求（即 Innodb 无法满足的功能如：列存储，存储空间数据等）的情况下，所有表必须使用 Innodb 存储引擎（MySQL5.5 之前默认使用 Myisam，5.6 以后默认的为 Innodb）。
-Innodb 支持事务，支持行级锁，更好的恢复性，高并发下性能更好。
-2. 数据库和表的字符集统一使用 UTF8兼容性更好，统一字符集可以避免由于字符集转换产生的乱码，不同的字符集进行比较前需要进行转换会造成索引失效，如果数据库中有存储 emoji 表情的需要，字符集需要采用 utf8mb4 字符集。
-参考文章：MySQL 字符集不一致导致索引失效的一个真实案例
-3. 所有表和字段都需要添加注释使用 comment 从句添加表 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/buffifly/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/" title="Mysql索引">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg28.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="Mysql索引"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/" title="Mysql索引">Mysql索引</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-09-04 21:43:47"><i class="far fa-calendar-alt"></i>2021-09-04</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">覆盖索引介绍什么是覆盖索引如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为“覆盖索引”。我们知道InnoDB存储引擎中，如果不是主键索引，叶子节点存储的是主键+列值。最终还是要“回表”，也就是要通过主键再查找一次。这样就会比较慢覆盖索引就是把要查询出的列和索引是对应的，不做回表操作！
-覆盖索引使用实例现在我创建了索引(username,age)，我们执行下面的 sql 语句
-1select username , age from user where username = 'Java' and age = 22
+                        数据库基本设计规范1. 所有表必须使用 Innodb 存储引擎没有特殊要求（即 Innodb 无法满足的功能如：列存储，存储空间数据等）的情况下，所有表必须使用 Innodb
+                        存储引擎（MySQL5.5 之前默认使用 Myisam，5.6 以后默认的为 Innodb）。
+                        Innodb 支持事务，支持行级锁，更好的恢复性，高并发下性能更好。
+                        2. 数据库和表的字符集统一使用 UTF8兼容性更好，统一字符集可以避免由于字符集转换产生的乱码，不同的字符集进行比较前需要进行转换会造成索引失效，如果数据库中有存储 emoji
+                        表情的需要，字符集需要采用 utf8mb4 字符集。
+                        参考文章：MySQL 字符集不一致导致索引失效的一个真实案例
+                        3. 所有表和字段都需要添加注释使用 comment 从句添加表 ...
+                    </div>
+                </div>
+            </div>
+            <div class="recent-post-item">
+                <div class="post_cover left_radius"><a href="/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/" title="Mysql索引"> <img
+                        class="post_bg"
+                        data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg28.jpg"
+                        onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql索引"></a></div>
+                <div class="recent-post-info"><a class="article-title" href="/2021/09/04/Mysql%E7%B4%A2%E5%BC%95/"
+                                                 title="Mysql索引">Mysql索引</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-09-04 21:43:47"><i
+                                class="far fa-calendar-alt"></i>2021-09-04
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">
+                        覆盖索引介绍什么是覆盖索引如果一个索引包含（或者说覆盖）所有需要查询的字段的值，我们就称之为“覆盖索引”。我们知道InnoDB存储引擎中，如果不是主键索引，叶子节点存储的是主键+列值。最终还是要“回表”，也就是要通过主键再查找一次。这样就会比较慢覆盖索引就是把要查询出的列和索引是对应的，不做回表操作！
+                        覆盖索引使用实例现在我创建了索引(username,age)，我们执行下面的 sql 语句
+                        1select username , age from user where username = 'Java' and age = 22
 
-在查询数据的时候：要查询出的列在叶子节点都存在！所以，就不用回表。
-选择索引和编写利用这些索引的查询的3个原则
-单行访问是很慢的。特别是在机械硬盘存储中（SSD的随机I/O要快很多，不过这一点仍然成立）。如果服务器从存储中读取一个数据块只是为了获取其中一行，那么就浪费了很多工作。最好读取的块中能包含尽可能多所需要的行。使用索引可以创建位置引，用以提升效率。
-按顺序访问范围数据是很快的，这有两个原因。第一，顺序 I/O 不需要多次磁盘寻道，所以比随机I/O要快很多（特别是对机械硬盘）。第二，如果服务器能够按需要顺序读取数据，那么就不再需要额外的排序操作，并且GROUPBY查询也无须再做排序和将行按组进行聚合计算了。
-索引覆盖查询是很快的。如果一个索引包含了 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/buffifly/2021/07/08/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="Mysql面试题总结">     <img class="post_bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" alt="Mysql面试题总结"></a></div><div class="recent-post-info"><a class="article-title" href="/buffifly/2021/07/08/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="Mysql面试题总结">Mysql面试题总结</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2021-07-08 21:04:14"><i class="far fa-calendar-alt"></i>2021-07-08</time><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/buffifly/tags/Mysql/">Mysql</a></span></div><div class="content">Mysql面试题总结
+                        在查询数据的时候：要查询出的列在叶子节点都存在！所以，就不用回表。
+                        选择索引和编写利用这些索引的查询的3个原则
+                        单行访问是很慢的。特别是在机械硬盘存储中（SSD的随机I/O要快很多，不过这一点仍然成立）。如果服务器从存储中读取一个数据块只是为了获取其中一行，那么就浪费了很多工作。最好读取的块中能包含尽可能多所需要的行。使用索引可以创建位置引，用以提升效率。
+                        按顺序访问范围数据是很快的，这有两个原因。第一，顺序 I/O
+                        不需要多次磁盘寻道，所以比随机I/O要快很多（特别是对机械硬盘）。第二，如果服务器能够按需要顺序读取数据，那么就不再需要额外的排序操作，并且GROUPBY查询也无须再做排序和将行按组进行聚合计算了。
+                        索引覆盖查询是很快的。如果一个索引包含了 ...
+                    </div>
+                </div>
+            </div>
+            <div class="recent-post-item">
+                <div class="post_cover right_radius"><a
+                        href="/2021/07/08/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" title="Mysql面试题总结"> <img
+                        class="post_bg"
+                        data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg"
+                        onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Mysql面试题总结"></a></div>
+                <div class="recent-post-info"><a class="article-title"
+                                                 href="/2021/07/08/Mysql%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"
+                                                 title="Mysql面试题总结">Mysql面试题总结</a>
+                    <div class="article-meta-wrap">
+                        <time class="post-meta__date" title="发表于 2021-07-08 21:04:14"><i
+                                class="far fa-calendar-alt"></i>2021-07-08
+                        </time>
+                        <span class="article-meta tags"><span class="article-meta__separator">|</span><i
+                                class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags"
+                                                                             href="/tags/Mysql/">Mysql</a></span></div>
+                    <div class="content">Mysql面试题总结
 
-Q1：MySQL 的逻辑架构了解吗？第一层是服务器层，主要提供连接处理、授权认证、安全等功能。
+                        Q1：MySQL 的逻辑架构了解吗？第一层是服务器层，主要提供连接处理、授权认证、安全等功能。
 
-第二层实现了 MySQL 核心服务功能，包括查询解析、分析、优化、缓存以及日期和时间等所有内置函数，所有跨存储引擎的功能都在这一层实现，例如存储过程、触发器、视图等。
+                        第二层实现了 MySQL 核心服务功能，包括查询解析、分析、优化、缓存以及日期和时间等所有内置函数，所有跨存储引擎的功能都在这一层实现，例如存储过程、触发器、视图等。
 
-第三层是存储引擎层，存储引擎负责 MySQL 中数据的存储和提取。服务器通过 API 与存储引擎通信，这些接口屏蔽了不同存储引擎的差异，使得差异对上层查询过程透明。除了会解析外键定义的 InnoDB 外，存储引擎不会解析 SQL，不同存储引擎之间也不会相互通信，只是简单响应上层服务器请求。
-
-
-
-Q2：谈一谈 MySQL 的读写锁在处理并发读或写时，可以通过实现一个由两种类型组成的锁系统来解决问题。这两种类型的锁通常被称为共享锁和排它锁，也叫读锁和写锁。读锁是共享的，相互不阻塞，多个客户在同一时刻可以同时读取同一个资源而不相互干扰。写锁则是排他的，也就是说一个写锁会阻塞其他的写锁和读锁，确保在给定时间内只有一个用户能执行写入并防止其他用户读取正在写入的同一资源。
-
-在实际的数据库系统中，每时每刻都在发生锁定，当某个用户在修改某一部分数据时，MySQL 会通过锁定防止其他用户读取同一数据。写锁比读锁有更高的优先级，一个写锁请求可能会被插入到读锁队列的前面，但是读锁不能插入到写锁前面。
+                        第三层是存储引擎层，存储引擎负责 MySQL 中数据的存储和提取。服务器通过 API 与存储引擎通信，这些接口屏蔽了不同存储引擎的差异，使得差异对上层查询过程透明。除了会解析外键定义的
+                        InnoDB 外，存储引擎不会解析 SQL，不同存储引擎之间也不会相互通信，只是简单响应上层服务器请求。
 
 
+                        Q2：谈一谈 MySQL
+                        的读写锁在处理并发读或写时，可以通过实现一个由两种类型组成的锁系统来解决问题。这两种类型的锁通常被称为共享锁和排它锁，也叫读锁和写锁。读锁是共享的，相互不阻塞，多个客户在同一时刻可以同时读取同一个资源而不相互干扰。写锁则是排他的，也就是说一个写锁会阻塞其他的写锁和读锁，确保在给定时间内只有一个用户能执行写入并防止其他用户读取正在写入的同一资源。
 
-Q3： ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/buffifly/img/avatar.png" onerror="this.onerror=null;this.src='/buffifly/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Hello World攻城狮</div><div class="author-info__description">天行健 君子以自强不息</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/buffifly/archives"><div class="headline">文章</div><div class="length_num">35</div></a></div><div class="card-info-data-item is-center">      <a href="/buffifly/tags"><div class="headline">标签</div><div class="length_num">11</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" type="button" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LJC0205" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/buffifly/3068451327@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget" id="card-poem"><div id="poem_sentence"></div><div id="poem_info"><div id="poem_dynasty"></div><div id="poem_author"></div></div></div><script src="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/jinrishici.js" charset="utf-8"></script><script type="text/javascript">jinrishici.load(function(result) {
-var sentence = document.querySelector("#poem_sentence")
-var author = document.querySelector("#poem_author")
-var dynasty = document.querySelector("#poem_dynasty")
+                        在实际的数据库系统中，每时每刻都在发生锁定，当某个用户在修改某一部分数据时，MySQL
+                        会通过锁定防止其他用户读取同一数据。写锁比读锁有更高的优先级，一个写锁请求可能会被插入到读锁队列的前面，但是读锁不能插入到写锁前面。
 
-var sentenceText = result.data.content
-sentenceText = sentenceText.substr(0, sentenceText.length - 1);
-sentence.innerHTML = sentenceText
-dynasty.innerHTML = result.data.origin.dynasty
-author.innerHTML = result.data.origin.author + '《' + result.data.origin.title + '》'
-});</script><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">如果永远只做能力以内的事情，那么将永远无法进步！</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/buffifly/2022/01/13/SpringBoot%E5%AE%9E%E7%8E%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg34.png" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="SpringBoot实现钉钉机器人消息推送异常信息" alt="SpringBoot实现钉钉机器人消息推送异常信息"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2022/01/13/SpringBoot%E5%AE%9E%E7%8E%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/" title="SpringBoot实现钉钉机器人消息推送异常信息">SpringBoot实现钉钉机器人消息推送异常信息</div><time class="aside-post_meta post-meta__date" title="发表于 2022-01-13 19:46:57">2022-01-13</time></div></a></div><div class="aside-recent-post"><a href="/buffifly/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg33.png" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="MYSQL递归查询" alt="MYSQL递归查询"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/" title="MYSQL递归查询">MYSQL递归查询</div><time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 22:19:13">2021-12-27</time></div></a></div><div class="aside-recent-post"><a href="/buffifly/2021/12/27/docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7Portainer%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%B1%89%E5%8C%96/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg32.png" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="docker可视化工具Portainer部署与汉化" alt="docker可视化工具Portainer部署与汉化"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2021/12/27/docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7Portainer%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%B1%89%E5%8C%96/" title="docker可视化工具Portainer部署与汉化">docker可视化工具Portainer部署与汉化</div><time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 17:00:40">2021-12-27</time></div></a></div><div class="aside-recent-post"><a href="/buffifly/2021/12/27/Centos7%E4%B8%ADyapi%E7%9A%84%E6%90%AD%E5%BB%BA/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg31.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="Centos7中yapi的搭建" alt="Centos7中yapi的搭建"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2021/12/27/Centos7%E4%B8%ADyapi%E7%9A%84%E6%90%AD%E5%BB%BA/" title="Centos7中yapi的搭建">Centos7中yapi的搭建</div><time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 10:17:14">2021-12-27</time></div></a></div><div class="aside-recent-post"><a href="/buffifly/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="一千行MySQL学习笔记" alt="一千行MySQL学习笔记"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="一千行MySQL学习笔记">一千行MySQL学习笔记</div><time class="aside-post_meta post-meta__date" title="发表于 2021-09-07 23:27:38">2021-09-07</time></div></a></div><div class="aside-recent-post"><a href="/buffifly/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg" onerror="this.onerror=null;this.src='/buffifly/img/404.jpg'" title="MySQL事务隔离级别" alt="MySQL事务隔离级别"/></div><div class="aside-post-title"><div class="aside-post_title" href="/buffifly/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" title="MySQL事务隔离级别">MySQL事务隔离级别</div><time class="aside-post_meta post-meta__date" title="发表于 2021-09-07 23:23:57">2021-09-07</time></div></a></div></div></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href='/buffifly/tags/Devtools/' style='font-size:21px; color:rgb(6, 159, 77)'>Devtools</a><a href='/buffifly/tags/Docker/' style='font-size:16px; color:rgb(186, 193, 67)'>Docker</a><a href='/buffifly/tags/Java/' style='font-size:21px; color:rgb(83, 181, 189)'>Java</a><a href='/buffifly/tags/Linux/' style='font-size:17px; color:rgb(155, 38, 81)'>Linux</a><a href='/buffifly/tags/Mysql/' style='font-size:16px; color:rgb(28, 122, 64)'>Mysql</a><a href='/buffifly/tags/Nginx/' style='font-size:18px; color:rgb(13, 63, 60)'>Nginx</a><a href='/buffifly/tags/RabbitMQ/' style='font-size:21px; color:rgb(138, 162, 196)'>RabbitMQ</a><a href='/buffifly/tags/Redis/' style='font-size:17px; color:rgb(140, 53, 65)'>Redis</a><a href='/buffifly/tags/Spring/' style='font-size:17px; color:rgb(127, 181, 154)'>Spring</a><a href='/buffifly/tags/SpringBoot/' style='font-size:17px; color:rgb(133, 3, 158)'>SpringBoot</a><a href='/buffifly/tags/SpringCloud/' style='font-size:16px; color:rgb(111, 58, 135)'>SpringCloud</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/buffifly/archives/2022/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/buffifly/archives/2021/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">34</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">35</div></div><div class="webinfo-item"><div class="webinfo-runtime-name">已运行时间 :</div><div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="2021/7/5">     </div></div><div class="webinfo-item"><div class="webinfo-site-wordcount-name">本站总字数 :</div><div class="webinfo-site-wordcount">90.3k</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Hello World攻城狮</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="algolia-search"><div class="search-dialog__title" id="algolia-search-title">Algolia</div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/buffifly/js/utils.js"></script><script src="/buffifly/js/main.js"></script><script src="/buffifly/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="ribbon_piao" mobile="true" src="/buffifly/js/third-party/piao.js"></script><script src="/buffifly/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+
+                        Q3： ...
+                    </div>
+                </div>
+            </div>
+            <nav id="pagination">
+                <div class="pagination"><span class="page-number current">1</span></div>
+            </nav>
+        </div>
+        <div class="aside_content" id="aside_content">
+            <div class="card-widget card-info">
+                <div class="card-content">
+                    <div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png"
+                                                                 onerror="this.onerror=null;this.src='/img/friend_404.gif'"
+                                                                 alt="avatar"/>
+                        <div class="author-info__name">Hello World攻城狮</div>
+                        <div class="author-info__description">天行健 君子以自强不息</div>
+                    </div>
+                    <div class="card-info-data">
+                        <div class="card-info-data-item is-center"><a href="/archives">
+                            <div class="headline">文章</div>
+                            <div class="length_num">35</div>
+                        </a></div>
+                        <div class="card-info-data-item is-center"><a href="/tags">
+                            <div class="headline">标签</div>
+                            <div class="length_num">11</div>
+                        </a></div>
+                    </div>
+                    <div class="card-info-bookmark is-center">
+                        <button class="button--animated" id="bookmark-it" type="button" title="加入书签"><i
+                                class="fas fa-bookmark"></i><span>加入书签</span></button>
+                    </div>
+                    <div class="card-info-social-icons is-center"><a class="social-icon"
+                                                                     href="https://github.com/LJC0205" target="_blank"
+                                                                     title="Github"><i class="fab fa-github"></i></a><a
+                            class="social-icon" href="/3068451327@qq.com" target="_blank" title="Email"><i
+                            class="fas fa-envelope"></i></a></div>
+                </div>
+            </div>
+            <div class="card-widget" id="card-poem">
+                <div id="poem_sentence"></div>
+                <div id="poem_info">
+                    <div id="poem_dynasty"></div>
+                    <div id="poem_author"></div>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/gh/zhheo/JS-Heo@main/poem/jinrishici.js" charset="utf-8"></script>
+            <script type="text/javascript">jinrishici.load(function (result) {
+                var sentence = document.querySelector("#poem_sentence")
+                var author = document.querySelector("#poem_author")
+                var dynasty = document.querySelector("#poem_dynasty")
+
+                var sentenceText = result.data.content
+                sentenceText = sentenceText.substr(0, sentenceText.length - 1);
+                sentence.innerHTML = sentenceText
+                dynasty.innerHTML = result.data.origin.dynasty
+                author.innerHTML = result.data.origin.author + '《' + result.data.origin.title + '》'
+            });</script>
+            <div class="card-widget card-announcement">
+                <div class="card-content">
+                    <div class="item-headline"><i
+                            class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div>
+                    <div class="announcement_content">如果永远只做能力以内的事情，那么将永远无法进步！</div>
+                </div>
+            </div>
+            <div class="card-widget card-recent-post">
+                <div class="card-content">
+                    <div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div>
+                    <div class="aside-recent-item">
+                        <div class="aside-recent-post"><a
+                                href="/2022/01/13/SpringBoot%E5%AE%9E%E7%8E%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg34.png"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="SpringBoot实现钉钉机器人消息推送异常信息"
+                                                               alt="SpringBoot实现钉钉机器人消息推送异常信息"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2022/01/13/SpringBoot%E5%AE%9E%E7%8E%B0%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/"
+                                     title="SpringBoot实现钉钉机器人消息推送异常信息">SpringBoot实现钉钉机器人消息推送异常信息
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2022-01-13 19:46:57">
+                                    2022-01-13
+                                </time>
+                            </div>
+                        </a></div>
+                        <div class="aside-recent-post"><a href="/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg33.png"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="MYSQL递归查询" alt="MYSQL递归查询"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2021/12/27/MYSQL%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/" title="MYSQL递归查询">
+                                    MYSQL递归查询
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 22:19:13">
+                                    2021-12-27
+                                </time>
+                            </div>
+                        </a></div>
+                        <div class="aside-recent-post"><a
+                                href="/2021/12/27/docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7Portainer%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%B1%89%E5%8C%96/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/pg32.png"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="docker可视化工具Portainer部署与汉化"
+                                                               alt="docker可视化工具Portainer部署与汉化"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2021/12/27/docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7Portainer%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%B1%89%E5%8C%96/"
+                                     title="docker可视化工具Portainer部署与汉化">docker可视化工具Portainer部署与汉化
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 17:00:40">
+                                    2021-12-27
+                                </time>
+                            </div>
+                        </a></div>
+                        <div class="aside-recent-post"><a
+                                href="/2021/12/27/Centos7%E4%B8%ADyapi%E7%9A%84%E6%90%AD%E5%BB%BA/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg31.jpg"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="Centos7中yapi的搭建" alt="Centos7中yapi的搭建"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2021/12/27/Centos7%E4%B8%ADyapi%E7%9A%84%E6%90%AD%E5%BB%BA/"
+                                     title="Centos7中yapi的搭建">Centos7中yapi的搭建
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2021-12-27 10:17:14">
+                                    2021-12-27
+                                </time>
+                            </div>
+                        </a></div>
+                        <div class="aside-recent-post"><a
+                                href="/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg2.jpg"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="一千行MySQL学习笔记" alt="一千行MySQL学习笔记"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2021/09/07/%E4%B8%80%E5%8D%83%E8%A1%8CMySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                                     title="一千行MySQL学习笔记">一千行MySQL学习笔记
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2021-09-07 23:27:38">
+                                    2021-09-07
+                                </time>
+                            </div>
+                        </a></div>
+                        <div class="aside-recent-post"><a
+                                href="/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/">
+                            <div class="aside-post-cover"><img class="aside-post-bg"
+                                                               data-src="https://lu-jia-chen.oss-cn-beijing.aliyuncs.com/lujiachen/cover/bg1.jpg"
+                                                               onerror="this.onerror=null;this.src='/img/404.jpg'"
+                                                               title="MySQL事务隔离级别" alt="MySQL事务隔离级别"/></div>
+                            <div class="aside-post-title">
+                                <div class="aside-post_title"
+                                     href="/2021/09/07/MySQL%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"
+                                     title="MySQL事务隔离级别">MySQL事务隔离级别
+                                </div>
+                                <time class="aside-post_meta post-meta__date" title="发表于 2021-09-07 23:23:57">
+                                    2021-09-07
+                                </time>
+                            </div>
+                        </a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-widget card-tags">
+                <div class="card-content">
+                    <div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div>
+                    <div class="card-tag-cloud"><a href='/tags/Devtools/' style='font-size:21px; color:rgb(6, 159, 77)'>Devtools</a><a
+                            href='/tags/Docker/' style='font-size:16px; color:rgb(186, 193, 67)'>Docker</a><a
+                            href='/tags/Java/' style='font-size:21px; color:rgb(83, 181, 189)'>Java</a><a
+                            href='/tags/Linux/' style='font-size:17px; color:rgb(155, 38, 81)'>Linux</a><a
+                            href='/tags/Mysql/' style='font-size:16px; color:rgb(28, 122, 64)'>Mysql</a><a
+                            href='/tags/Nginx/' style='font-size:18px; color:rgb(13, 63, 60)'>Nginx</a><a
+                            href='/tags/RabbitMQ/' style='font-size:21px; color:rgb(138, 162, 196)'>RabbitMQ</a><a
+                            href='/tags/Redis/' style='font-size:17px; color:rgb(140, 53, 65)'>Redis</a><a
+                            href='/tags/Spring/' style='font-size:17px; color:rgb(127, 181, 154)'>Spring</a><a
+                            href='/tags/SpringBoot/' style='font-size:17px; color:rgb(133, 3, 158)'>SpringBoot</a><a
+                            href='/tags/SpringCloud/' style='font-size:16px; color:rgb(111, 58, 135)'>SpringCloud</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-widget card-archives">
+                <div class="card-content">
+                    <div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div>
+                    <ul class="card-archive-list">
+                        <li class="card-archive-list-item"><a class="card-archive-list-link"
+                                                              href="/archives/2022/"><span
+                                class="card-archive-list-date">一月 2022</span><span
+                                class="card-archive-list-count">1</span></a></li>
+                        <li class="card-archive-list-item"><a class="card-archive-list-link"
+                                                              href="/archives/2021/"><span
+                                class="card-archive-list-date">十二月 2021</span><span
+                                class="card-archive-list-count">34</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-widget card-webinfo">
+                <div class="card-content">
+                    <div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div>
+                    <div class="webinfo">
+                        <div class="webinfo-item">
+                            <div class="webinfo-article-name">文章数目 :</div>
+                            <div class="webinfo-article-count">35</div>
+                        </div>
+                        <div class="webinfo-item">
+                            <div class="webinfo-runtime-name">已运行时间 :</div>
+                            <div class="webinfo-runtime-count" id="webinfo-runtime-count" publish_date="2021/7/5"></div>
+                        </div>
+                        <div class="webinfo-item">
+                            <div class="webinfo-site-wordcount-name">本站总字数 :</div>
+                            <div class="webinfo-site-wordcount">90.3k</div>
+                        </div>
+                        <div class="webinfo-item">
+                            <div class="webinfo-site-uv-name">本站访客数 :</div>
+                            <div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div>
+                        </div>
+                        <div class="webinfo-item">
+                            <div class="webinfo-site-name">本站总访问量 :</div>
+                            <div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer id="footer" data-type="color">
+        <div id="footer-wrap">
+            <div class="copyright">&copy;2020 - 2022 By Hello World攻城狮</div>
+            <div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span
+                    class="footer-separator">|</span><span>主题 </span><a
+                    href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<section id="rightside">
+    <div id="rightside-config-hide">
+        <button id="translateLink" type="button" title="简繁转换">繁</button>
+        <button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button>
+    </div>
+    <div id="rightside-config-show">
+        <button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button>
+        <button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button>
+    </div>
+</section>
+<div class="search-dialog" id="algolia-search">
+    <div class="search-dialog__title" id="algolia-search-title">Algolia</div>
+    <div id="algolia-input-panel">
+        <div id="algolia-search-input"></div>
+    </div>
+    <hr/>
+    <div id="algolia-search-results">
+        <div id="algolia-hits"></div>
+        <div id="algolia-pagination"></div>
+        <div id="algolia-stats"></div>
+    </div>
+    <span class="search-close-button"><i class="fas fa-times"></i></span></div>
+<div class="search-mask"></div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/tw_cn.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script>
+<script id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script>
+<script src="/js/third-party/activate-power-mode.js"></script>
+<script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 document.body.addEventListener('input', POWERMODE);
-</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() {
-  pangu.autoSpacingPage()
-})</script><script src="/buffifly/js/search/algolia.js"></script><script>if (document.getElementsByClassName('mermaid').length) {
-  loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js',function () {
-    mermaid.initialize({
-      theme: 'default',
-  })
-})
-}</script><script src="/buffifly/js/VolantisTags.js"></script><script src="/buffifly/js/volantis.js"></script><script defer src="/live2d-widget/autoload.js"></script><script>var endLoading = function () {
-  document.body.style.overflow = 'auto';
-  document.getElementById('loading-box').classList.add("loaded")
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    pangu.autoSpacingPage()
+})</script>
+<script src="/js/search/algolia.js"></script>
+<script>if (document.getElementsByClassName('mermaid').length) {
+    loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+        mermaid.initialize({
+            theme: 'default',
+        })
+    })
+}</script>
+<script src="/js/VolantisTags.js"></script>
+<script src="/js/volantis.js"></script>
+<script defer src="/live2d-widget/autoload.js"></script>
+<script>var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
 }
-window.addEventListener('load',endLoading)</script><script src="/buffifly/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/buffifly/live2dw/assets/haruto.model.json"},"display":{"position":"lift","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+window.addEventListener('load', endLoading)</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script>
+<script>L2Dwidget.init({
+    "model": {"jsonPath": "/live2dw/assets/haruto.model.json"},
+    "display": {"position": "lift", "width": 150, "height": 300},
+    "mobile": {"show": false},
+    "log": false,
+    "pluginJsPath": "lib/",
+    "pluginModelPath": "assets/",
+    "pluginRootPath": "live2dw/",
+    "tagMode": false
+});</script>
+</body>
+</html>
